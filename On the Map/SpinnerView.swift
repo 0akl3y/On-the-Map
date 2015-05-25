@@ -54,9 +54,4 @@ class SpinnerView: UIView {
         self.spinner.stopAnimating()    
     
     }
-    
-
-    
-
-
 }
