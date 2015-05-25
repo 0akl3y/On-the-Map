@@ -12,18 +12,27 @@ import UIKit
 class SpinnerView: UIView {
     
     var spinner: UIActivityIndicatorView!
+    var spinnerArea: UIView!
     
     override init(frame: CGRect) {
         
         super.init(frame: frame)
-        self.backgroundColor = UIColor(hue: 26.0, saturation: 0, brightness: 75.0, alpha: 0.7)
+        self.backgroundColor = UIColor(hue: 0.07, saturation: 0, brightness: 0.75, alpha: 0.7)
     
-        self.spinner = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-        self.spinner.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
+        self.spinner = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+        self.spinner.frame = CGRectMake(0.0, 0.0, 40.0, 40.0)
         self.spinner.center = self.center
         self.spinner.hidesWhenStopped = true
         
-        self.addSubview(spinner)
+        self.spinnerArea = UIView(frame: CGRectMake(0.0, 0.0, 80.0, 80.0))
+        self.spinnerArea.backgroundColor =  UIColor.blackColor()
+        
+        self.spinnerArea.addSubview(spinner)
+        
+        self.spinnerArea.center = self.center
+        self.spinner.center = CGPointMake(self.spinnerArea.frame.width / 2.0, self.spinnerArea.frame.height / 2.0)
+        
+        self.addSubview(spinnerArea)
     }
     
     
