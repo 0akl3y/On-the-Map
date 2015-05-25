@@ -25,7 +25,9 @@ class SpinnerView: UIView {
         self.spinner.hidesWhenStopped = true
         
         self.spinnerArea = UIView(frame: CGRectMake(0.0, 0.0, 80.0, 80.0))
-        self.spinnerArea.backgroundColor =  UIColor.blackColor()
+        self.spinnerArea.backgroundColor =  UIColor(hue: 0.07, saturation: 0, brightness: 0.5, alpha: 1.0)
+        self.spinnerArea.clipsToBounds = true
+        self.spinnerArea.layer.cornerRadius = 10
         
         self.spinnerArea.addSubview(spinner)
         
