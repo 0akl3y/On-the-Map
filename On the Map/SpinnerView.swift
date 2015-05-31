@@ -40,7 +40,7 @@ class SpinnerView: UIView {
     
     func recenterSpinner(){
         
-        // Usually called when sizw of owning view has changed to recenter the spinner
+        // Usually called when size of owning view has changed to recenter the spinner
         //test
         
         self.spinner.center = self.center
@@ -62,7 +62,25 @@ class SpinnerView: UIView {
     
     func stop(){
         
-        self.spinner.stopAnimating()    
+        self.spinner.stopAnimating()
+        
+        UIView.animateWithDuration(1.0, animations: { () -> Void in
+            
+            self.removeFromSuperview()
+            
+        })
+    }
+    
+    func showErrorMessage(){
+        
+        UIView.animateWithDuration(1.0, animations: { () -> Void in
+            self.spinnerArea.frame.size = CGSize(width: 160.0, height: 160.0)
+            self.spinnerArea.backgroundColor = UIColor.redColor()
+            self.spinnerArea.center = self.center
+
+            //self.removeFromSuperview()
+        })
     
     }
+    
 }

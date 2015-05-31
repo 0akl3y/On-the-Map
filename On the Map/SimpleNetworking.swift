@@ -39,10 +39,7 @@ class SimpleNetworking: NSObject {
         var completeURL = targetURL + "?" + getRequestPart
         
         return completeURL
-        
     }
-    
-    
     
     func sendPOSTRequest(targetURL: String, POSTData: [String:AnyObject], completion:(result:NSData?, error:NSError?) -> Void){
         
@@ -91,12 +88,7 @@ class SimpleNetworking: NSObject {
             println(NSString(data: newData, encoding: NSUTF8StringEncoding))
         }
         task.resume()
-
-        
-            
-
             
     }
-    
     
 }

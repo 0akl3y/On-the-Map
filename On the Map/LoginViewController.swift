@@ -25,9 +25,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         if (FBSDKAccessToken.currentAccessToken() != nil) {
             
-            self.activityIndicator = SpinnerView(frame: self.view.frame)
-            self.view.addSubview(activityIndicator!)
-            self.activityIndicator!.start()
+            self.startActivityIndicator()
             
             if var accessToken = FBSDKAccessToken.currentAccessToken().tokenString{
                 let session = UdacityFacebookAuth(accessToken: accessToken)
@@ -54,15 +52,24 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         self.activityIndicator?.recenterSpinner()
     }
     
-    func handleLoginResponse(success: Bool, error: NSError?){
+    func startActivityIndicator(){
         
-        self.activityIndicator?.stop()
+        self.activityIndicator = SpinnerView(frame: self.view.frame)
+        self.view.addSubview(activityIndicator!)
+        self.activityIndicator!.start()
+    
+    }
+        
+    
+    func handleLoginResponse(success: Bool, error: NSError?){
         
         if(success){
             
             println("Login Succeded")
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                
+                self.activityIndicator?.stop()
                 self.performSegueWithIdentifier("login", sender: self)
             })
         }
@@ -71,7 +78,12 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             
             if var currentError = error{
                 
-                self.generateErrorMessageString(error!)
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.generateErrorMessageString(error!)
+                    self.activityIndicator?.showErrorMessage()
+                })
+                
+                
                 
             }
             
@@ -101,9 +113,11 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     @IBAction func proceedLogin(sender: UIButton) {
         
+        self.startActivityIndicator()
+        
         var session = UdacityStandardLogin(username: self.emailField.text, password: self.passwordField.text)
         session.POSTSessionRequest { (success, error) -> Void in
-            
+                        
             self.handleLoginResponse(success, error: error)
             
             }
@@ -132,9 +146,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     @IBAction func proceedFBLogin(sender: UIButton) {
         
-        self.activityIndicator = SpinnerView(frame: self.view.frame)
-        self.view.addSubview(activityIndicator!)
-        self.activityIndicator!.start()
+        self.startActivityIndicator()
         
         let session = FBSDKLoginManager()
         session.logInWithReadPermissions(["public_profile", "email", "user_friends"]) { (FBSDKLoginManagerLoginResult, NSError) -> Void in
@@ -142,7 +154,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             if var accessToken = FBSDKAccessToken.currentAccessToken().tokenString{
                 let session = UdacityFacebookAuth(accessToken: accessToken)
                 session.POSTSessionRequest({ (success, error) -> Void in
-                    
                     
                     self.activityIndicator!.stop()
                     self.handleLoginResponse(success, error: error)
@@ -152,9 +163,3 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         }
     }
 }
-
-
-
-
-
-
