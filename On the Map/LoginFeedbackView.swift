@@ -9,7 +9,9 @@
 
 import UIKit
 
-class SpinnerView: UIView {
+
+
+class LoginFeedbackView: UIView, ErrorDialogDelegate {
     
     var spinner: UIActivityIndicatorView!
     var spinnerArea: UIView!
@@ -63,24 +65,56 @@ class SpinnerView: UIView {
     func stop(){
         
         self.spinner.stopAnimating()
-        
-        UIView.animateWithDuration(1.0, animations: { () -> Void in
-            
-            self.removeFromSuperview()
-            
-        })
+        self.removeFromSuperview()            
+       
     }
     
-    func showErrorMessage(){
+    
+
+    
+    
+    func showLoginErrorMessage(errorMessage:String){
         
-        UIView.animateWithDuration(1.0, animations: { () -> Void in
-            self.spinnerArea.frame.size = CGSize(width: 160.0, height: 160.0)
+        //Displays a custom error message for an login error.
+        
+        self.spinner.stopAnimating()
+        
+        let loginErrorMessage = ErrorDialog()
+        loginErrorMessage.delegate = self
+        loginErrorMessage.messageLabel.text = errorMessage
+        
+        loginErrorMessage.alpha = CGFloat(0)
+        
+        UIView.animateWithDuration(1.0, delay: 0, options: UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
+            self.spinnerArea.frame.size = CGSize(width: 300.0, height: 100.0)
             self.spinnerArea.backgroundColor = UIColor.redColor()
+            
             self.spinnerArea.center = self.center
 
-            //self.removeFromSuperview()
-        })
-    
+            }) { (completed) -> Void in
+                
+        }
+        
+        UIView.animateWithDuration(1.0, delay: 1.0, options: UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
+
+            self.spinnerArea.addSubview(loginErrorMessage)
+            loginErrorMessage.alpha = 1.0
+            }) { (completed) -> Void in
+                
+        }
+        
     }
     
+    // Delegate methods to handle ErrorDialog buttons
+    
+    func errorDialogRetryButtonPressed() {
+        self.removeFromSuperview()
+    }
+    
+    
+    func errorDialogCloseButtonPressed() {
+        self.removeFromSuperview()
+    }
+    
+
 }

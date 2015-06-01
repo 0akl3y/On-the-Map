@@ -9,7 +9,7 @@ import UIKit
 
 class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
-    var activityIndicator: SpinnerView?
+    var activityIndicator: LoginFeedbackView?
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -32,6 +32,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 session.POSTSessionRequest({ (success, error) -> Void in
                     
                     self.handleLoginResponse(success, error: error)
+                
                 })
             }
             
@@ -54,7 +55,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     func startActivityIndicator(){
         
-        self.activityIndicator = SpinnerView(frame: self.view.frame)
+        self.activityIndicator = LoginFeedbackView(frame: self.view.frame)
         self.view.addSubview(activityIndicator!)
         self.activityIndicator!.start()
     
@@ -76,11 +77,11 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             
         else{
             
-            if var currentError = error{
+            if var currentError = error{                
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.generateErrorMessageString(error!)
-                    self.activityIndicator?.showErrorMessage()
+                    //self.generateErrorMessageString(error!)
+                    self.activityIndicator?.showLoginErrorMessage(self.generateErrorMessageString(error!))
                 })
                 
                 
