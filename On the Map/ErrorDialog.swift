@@ -8,10 +8,10 @@
 
 import UIKit
 
-protocol ErrorDialogDelegate {
+@objc protocol ErrorDialogDelegate {
     
-    func errorDialogRetryButtonPressed() -> Void
     func errorDialogCloseButtonPressed() -> Void
+    optional func errorDialogRetryButtonPressed() -> Void
 
 }
 
@@ -22,33 +22,52 @@ class ErrorDialog: UIView
     var hasRetryButton:Bool!
     var messageLabel:UILabel!
     
+    var closeButton:UIButton!
+    var retryButton:UIButton?
+    
+    var buttonSize: CGSize = CGSizeMake(50.0, 16.0)
     
     init(){
         
         super.init(frame:CGRectMake(0.0, 0.0, 300.0, 100.0 ))
         
-        var buttonSize: CGSize = CGSizeMake(50.0, 16.0)
         
-        let retryButton = UIButton(frame: CGRectMake(50.0, 74.0, buttonSize.width, buttonSize.height))
-        retryButton.setTitle("Retry", forState: UIControlState.Normal)
-        retryButton.addTarget(self, action: "retry:", forControlEvents: UIControlEvents.TouchUpInside)
+        var center: CGPoint = CGPointMake((self.frame.width / 2.0) - (self.buttonSize.width / 2.0), 74.0)
         
-        let closeButton = UIButton(frame: CGRectMake(200.0, 74.0, buttonSize.width, buttonSize.height))
-        closeButton.setTitle("Close", forState: UIControlState.Normal)
-        closeButton.addTarget(self, action: "closeWarning:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.closeButton = UIButton(frame: CGRectMake(center.x, center.y, self.buttonSize.width, self.buttonSize.height))
+        self.closeButton.setTitle("Close", forState: UIControlState.Normal)
+        self.closeButton.addTarget(self, action: "closeWarning:", forControlEvents: UIControlEvents.TouchUpInside)
         
         self.messageLabel = UILabel(frame: CGRectMake(25, 10, 250, 57))
         self.messageLabel.textAlignment = NSTextAlignment.Left
-        self.messageLabel.font = UIFont.boldSystemFontOfSize(10.0)
+        self.messageLabel.font = UIFont.boldSystemFontOfSize(12.0)
         self.messageLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        self.messageLabel.drawTextInRect(CGRectMake(25, 10, 250, 57))
+        self.messageLabel.numberOfLines = 0 as Int
         
-        
-        self.addSubview(retryButton)
         self.addSubview(closeButton)
         self.addSubview(messageLabel)
+        self.backgroundColor = UIColor(red: 1.000, green: 0.896, blue: 0.000, alpha: 0.506)
     
     }
+    
+    
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func addRetryButton(){
+        
+        //Render a version of the dialog with the retry button
+        
+        self.retryButton = UIButton(frame: CGRectMake(50.0, 74.0, self.buttonSize.width, self.buttonSize.height))
+        self.retryButton!.setTitle("Retry", forState: UIControlState.Normal)
+        self.retryButton!.addTarget(self, action: "retry:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        self.closeButton.center.x = 225.0
+        self.addSubview(self.retryButton!)
+        
+    }
+    
     
     
     func setErrorMessage(errorMessage:String){
@@ -56,22 +75,14 @@ class ErrorDialog: UIView
         self.messageLabel.text = errorMessage
     
     }
-
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     
     
     func closeWarning(sender:UIButton){
         delegate!.errorDialogCloseButtonPressed()
     }
     
-    
-    
-    
     func retry(sender:UIButton){        
-        delegate!.errorDialogRetryButtonPressed()
+        delegate!.errorDialogRetryButtonPressed!()
     
     }
     

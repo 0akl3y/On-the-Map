@@ -9,8 +9,6 @@
 
 import UIKit
 
-
-
 class LoginFeedbackView: UIView, ErrorDialogDelegate {
     
     var spinner: UIActivityIndicatorView!
@@ -69,10 +67,6 @@ class LoginFeedbackView: UIView, ErrorDialogDelegate {
        
     }
     
-    
-
-    
-    
     func showLoginErrorMessage(errorMessage:String){
         
         //Displays a custom error message for an login error.
@@ -83,6 +77,7 @@ class LoginFeedbackView: UIView, ErrorDialogDelegate {
         loginErrorMessage.delegate = self
         loginErrorMessage.messageLabel.text = errorMessage
         
+        loginErrorMessage.addRetryButton()
         loginErrorMessage.alpha = CGFloat(0)
         
         UIView.animateWithDuration(1.0, delay: 0, options: UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
@@ -106,10 +101,12 @@ class LoginFeedbackView: UIView, ErrorDialogDelegate {
     }
     
     // Delegate methods to handle ErrorDialog buttons
-    
+  
+
     func errorDialogRetryButtonPressed() {
         self.removeFromSuperview()
     }
+
     
     
     func errorDialogCloseButtonPressed() {
