@@ -19,7 +19,7 @@ class UdacityStandardLogin: UdacityClient {
         self.username = username
         self.password = password
         
-        super.init(loginCredentials: ["udacity" : ["username": username, "password": password]])
+        super.init(loginCredentials: ["udacity" : ["username": username, "password": password]])        
         
     }
    

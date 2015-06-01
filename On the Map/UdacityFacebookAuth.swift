@@ -17,7 +17,7 @@ class UdacityFacebookAuth: UdacityClient {
         self.FBAccessToken = accessToken
         
         let credentials = ["facebook_mobile": ["access_token": accessToken]]
-        super.init(loginCredentials: credentials)
+        super.init(loginCredentials: credentials)        
     
     }
 

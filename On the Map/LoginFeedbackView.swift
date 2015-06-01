@@ -9,10 +9,22 @@
 
 import UIKit
 
+
+protocol LoginFeedbackDelegate {
+    
+    //provide the delegate action to the containing superview
+    
+    func didActivateRetryAction()
+
+}
+
 class LoginFeedbackView: UIView, ErrorDialogDelegate {
     
     var spinner: UIActivityIndicatorView!
     var spinnerArea: UIView!
+    var delegate: LoginFeedbackDelegate?
+    
+    var errorType: String?
     
     override init(frame: CGRect) {
         
@@ -67,7 +79,7 @@ class LoginFeedbackView: UIView, ErrorDialogDelegate {
        
     }
     
-    func showLoginErrorMessage(errorMessage:String){
+    func showLoginErrorMessage(errorMessage:String, errorDomain:String){
         
         //Displays a custom error message for an login error.
         
@@ -77,7 +89,20 @@ class LoginFeedbackView: UIView, ErrorDialogDelegate {
         loginErrorMessage.delegate = self
         loginErrorMessage.messageLabel.text = errorMessage
         
-        loginErrorMessage.addRetryButton()
+        //Only add a retry button if it is a network connection related error
+
+        if(errorDomain != "UdacityClientLoginError"){
+
+            loginErrorMessage.addRetryButton()
+            self.errorType = "ConnectionError" //Let's do this with an enum
+        }
+        
+        else{
+            
+            self.errorType = "LoginError"
+        
+        }
+        
         loginErrorMessage.alpha = CGFloat(0)
         
         UIView.animateWithDuration(1.0, delay: 0, options: UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
@@ -104,7 +129,9 @@ class LoginFeedbackView: UIView, ErrorDialogDelegate {
   
 
     func errorDialogRetryButtonPressed() {
-        self.removeFromSuperview()
+        
+        delegate?.didActivateRetryAction()        
+        
     }
 
     
