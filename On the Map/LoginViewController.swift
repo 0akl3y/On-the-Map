@@ -23,6 +23,8 @@ class LoginViewController: UIViewController, LoginFeedbackDelegate {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        passwordField.secureTextEntry = true
 
         FBSDKProfile.enableUpdatesOnAccessTokenChange(true)
         
@@ -107,7 +109,6 @@ class LoginViewController: UIViewController, LoginFeedbackDelegate {
             
         }
         
-        println(errorMessage)
         return errorMessage
     
     }

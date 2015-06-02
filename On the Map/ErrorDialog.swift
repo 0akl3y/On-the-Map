@@ -30,11 +30,10 @@ class ErrorDialog: UIView
     init(){
         
         super.init(frame:CGRectMake(0.0, 0.0, 300.0, 100.0 ))
+                
+        var centerPos: CGPoint = CGPointMake((self.frame.width / 2.0) - (self.buttonSize.width / 2.0), 74.0)
         
-        
-        var center: CGPoint = CGPointMake((self.frame.width / 2.0) - (self.buttonSize.width / 2.0), 74.0)
-        
-        self.closeButton = UIButton(frame: CGRectMake(center.x, center.y, self.buttonSize.width, self.buttonSize.height))
+        self.closeButton = UIButton(frame: CGRectMake(centerPos.x, centerPos.y, self.buttonSize.width, self.buttonSize.height))
         self.closeButton.setTitle("Close", forState: UIControlState.Normal)
         self.closeButton.addTarget(self, action: "closeWarning:", forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -50,14 +49,13 @@ class ErrorDialog: UIView
     
     }
     
-    
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     func addRetryButton(){
         
-        //Render a version of the dialog with the retry button
+        //Render a version of the dialog with the retry button when connection problems did occur
         
         self.retryButton = UIButton(frame: CGRectMake(50.0, 74.0, self.buttonSize.width, self.buttonSize.height))
         self.retryButton!.setTitle("Retry", forState: UIControlState.Normal)
@@ -68,14 +66,15 @@ class ErrorDialog: UIView
         
     }
     
-    
-    
     func setErrorMessage(errorMessage:String){
         
         self.messageLabel.text = errorMessage
     
     }
     
+    
+    
+    //Call the delegate methods to handle the button taps in the error dialog
     
     func closeWarning(sender:UIButton){
         delegate!.errorDialogCloseButtonPressed()
