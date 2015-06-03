@@ -31,35 +31,36 @@ class ErrorDialog: UIView
 
     init(){
         
-        super.init(frame:CGRectMake(0.0, 50.0, 300.0, 100.0 ))
+        super.init(frame:CGRectMake(0.0, 0.0, 300.0, 125.0 ))
                         
-        var centerPos: CGPoint = CGPointMake((self.frame.width / 2.0) - (self.buttonSize.width / 2.0), 74.0)
+        let centerPos: CGPoint = CGPointMake((self.frame.width / 2.0) - (self.buttonSize.width / 2.0), 100.0)
         
         self.layer.cornerRadius = 10
+
 
         self.closeButton = UIButton(frame: CGRectMake(centerPos.x, centerPos.y, self.buttonSize.width, self.buttonSize.height))
         self.closeButton.setTitle("Close", forState: UIControlState.Normal)
         self.closeButton.addTarget(self, action: "closeWarning:", forControlEvents: UIControlEvents.TouchUpInside)
         
-        self.messageLabel = UILabel(frame: CGRectMake(25, 15, 250, 57))
-        self.messageLabel.textAlignment = NSTextAlignment.Left
+        self.messageLabel = UILabel(frame: CGRectMake(0, 0, 250, 57))
+        self.messageLabel.center = self.center
+        self.messageLabel.textAlignment = NSTextAlignment.Center
         self.messageLabel.font = UIFont.boldSystemFontOfSize(12.0)
         self.messageLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        self.messageLabel.numberOfLines = 0 as Int
-        
+        self.messageLabel.numberOfLines = 0
         
         var messageIcon = UIImage(named: "messageIcon")
         
 
         self.symbolArea = UIImageView(image: messageIcon)
-        self.symbolArea!.frame = CGRectMake(125, -25, 50, 50)
+        self.symbolArea!.frame = CGRectMake(120, -30, 60, 60)
 
         
         self.addSubview(self.symbolArea!)
         self.addSubview(closeButton)
         self.addSubview(messageLabel)
         
-        self.backgroundColor = UIColor(red: 1.000, green: 0.896, blue: 0.000, alpha: 1)
+        self.backgroundColor = UIColor(red: 1.000, green: 0.606, blue: 0.016, alpha: 1.000)
         
     
     }
@@ -70,9 +71,9 @@ class ErrorDialog: UIView
     
     func addRetryButton(){
         
-        //Render a version of the dialog with the retry button when connection problems did occur
+        //Render a version of the dialog with the retry buttonv when connection problems did occur
         
-        self.retryButton = UIButton(frame: CGRectMake(50.0, 74.0, self.buttonSize.width, self.buttonSize.height))
+        self.retryButton = UIButton(frame: CGRectMake(50.0, 100.0, self.buttonSize.width, self.buttonSize.height))
         self.retryButton!.setTitle("Retry", forState: UIControlState.Normal)
         self.retryButton!.addTarget(self, action: "retry:", forControlEvents: UIControlEvents.TouchUpInside)
         

@@ -55,6 +55,7 @@ class LoginFeedbackView: UIView, ErrorDialogDelegate {
         // Call when size of owning view has changed to recenter the spinner
         
         self.spinnerArea.center = self.center
+        self.loginErrorMessage?.center = self.center
 
     }
     
@@ -103,23 +104,23 @@ class LoginFeedbackView: UIView, ErrorDialogDelegate {
         
         }
         
-        self.loginErrorMessage!.alpha = CGFloat(0)
+        self.loginErrorMessage!.alpha = CGFloat(0)        
         
-        UIView.animateWithDuration(0.8, delay: 0, options: UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
-            self.spinnerArea.frame.size = CGSize(width: 300.0, height: 150.0)
-            self.spinnerArea.backgroundColor = UIColor.whiteColor()
-            
-            
-            self.spinnerArea.center = self.center
+        
+        UIView.animateWithDuration(0.4, delay: 0, options: UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
+
+            self.spinnerArea.backgroundColor = UIColor.clearColor()
+            self.loginErrorMessage?.center = self.center
 
             }) { (completed) -> Void in
                 
         }
         
-        UIView.animateWithDuration(0.8, delay: 0.8, options: UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
-
-            self.spinnerArea.addSubview(self.loginErrorMessage!)
-            self.spinnerArea.backgroundColor = UIColor.clearColor()
+        UIView.animateWithDuration(0.4, delay: 0.4, options: UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
+            
+            
+            self.addSubview(self.loginErrorMessage!)
+            
             self.loginErrorMessage!.alpha = 1.0
             }) { (completed) -> Void in
                 

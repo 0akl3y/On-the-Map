@@ -125,7 +125,12 @@ class LoginViewController: UIViewController, LoginFeedbackDelegate {
             }
         }
     
-    @IBAction func proceedSignup(sender: UIButton) {}
+    @IBAction func proceedSignup(sender: UIButton) {
+        
+        let signupURL = NSURL(string: "https://www.udacity.com/account/auth#!/signup)")
+        UIApplication.sharedApplication().openURL(signupURL!)
+    
+    }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         println("Customer logged out")
