@@ -105,9 +105,10 @@ class LoginFeedbackView: UIView, ErrorDialogDelegate {
         
         self.loginErrorMessage!.alpha = CGFloat(0)
         
-        UIView.animateWithDuration(1.0, delay: 0, options: UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
-            self.spinnerArea.frame.size = CGSize(width: 300.0, height: 100.0)
-            //self.spinnerArea.backgroundColor = UIColor.redColor()
+        UIView.animateWithDuration(0.8, delay: 0, options: UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
+            self.spinnerArea.frame.size = CGSize(width: 300.0, height: 150.0)
+            self.spinnerArea.backgroundColor = UIColor.whiteColor()
+            
             
             self.spinnerArea.center = self.center
 
@@ -115,11 +116,13 @@ class LoginFeedbackView: UIView, ErrorDialogDelegate {
                 
         }
         
-        UIView.animateWithDuration(1.0, delay: 1.0, options: UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
+        UIView.animateWithDuration(0.8, delay: 0.8, options: UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
 
             self.spinnerArea.addSubview(self.loginErrorMessage!)
+            self.spinnerArea.backgroundColor = UIColor.clearColor()
             self.loginErrorMessage!.alpha = 1.0
             }) { (completed) -> Void in
+                
                 
         }
         

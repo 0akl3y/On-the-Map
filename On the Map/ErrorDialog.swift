@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreGraphics
 
 @objc protocol ErrorDialogDelegate {
     
@@ -21,31 +22,45 @@ class ErrorDialog: UIView
     var delegate: ErrorDialogDelegate?
     var hasRetryButton:Bool!
     var messageLabel:UILabel!
+    var symbolArea: UIImageView?
     
     var closeButton:UIButton!
     var retryButton:UIButton?
     
-    var buttonSize: CGSize = CGSizeMake(50.0, 16.0)
-    
+    let buttonSize: CGSize = CGSizeMake(50.0, 16.0)
+
     init(){
         
-        super.init(frame:CGRectMake(0.0, 0.0, 300.0, 100.0 ))
-                
+        super.init(frame:CGRectMake(0.0, 50.0, 300.0, 100.0 ))
+                        
         var centerPos: CGPoint = CGPointMake((self.frame.width / 2.0) - (self.buttonSize.width / 2.0), 74.0)
         
+        self.layer.cornerRadius = 10
+
         self.closeButton = UIButton(frame: CGRectMake(centerPos.x, centerPos.y, self.buttonSize.width, self.buttonSize.height))
         self.closeButton.setTitle("Close", forState: UIControlState.Normal)
         self.closeButton.addTarget(self, action: "closeWarning:", forControlEvents: UIControlEvents.TouchUpInside)
         
-        self.messageLabel = UILabel(frame: CGRectMake(25, 10, 250, 57))
+        self.messageLabel = UILabel(frame: CGRectMake(25, 15, 250, 57))
         self.messageLabel.textAlignment = NSTextAlignment.Left
         self.messageLabel.font = UIFont.boldSystemFontOfSize(12.0)
         self.messageLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         self.messageLabel.numberOfLines = 0 as Int
         
+        
+        var messageIcon = UIImage(named: "messageIcon")
+        
+
+        self.symbolArea = UIImageView(image: messageIcon)
+        self.symbolArea!.frame = CGRectMake(125, -25, 50, 50)
+
+        
+        self.addSubview(self.symbolArea!)
         self.addSubview(closeButton)
         self.addSubview(messageLabel)
-        self.backgroundColor = UIColor(red: 1.000, green: 0.896, blue: 0.000, alpha: 0.506)
+        
+        self.backgroundColor = UIColor(red: 1.000, green: 0.896, blue: 0.000, alpha: 1)
+        
     
     }
     
