@@ -13,8 +13,11 @@ class UdacityClient: SimpleNetworking {
     //Implements Udacity API Methods and Error Handling
     
     var sessionID: String?
-    let sessionURL = "https://www.udacity.com/api/session"    
+    let sessionURL = "https://www.udacity.com/api/session"
+    let userInfoURL = "https://www.udacity.com/api/users/"
+    
     var loginCredentials = [String: [String: String]]()
+    var userKey: String?
     
     
     init(loginCredentials: [String: [String: String]]){
@@ -37,7 +40,9 @@ class UdacityClient: SimpleNetworking {
             let parsedResult: AnyObject! = NSJSONSerialization.JSONObjectWithData(result!, options: NSJSONReadingOptions.AllowFragments, error: nil)
             
             if var accountDictionary = parsedResult.valueForKey("account") as? [String: AnyObject]{
-                
+                //the login succeeded
+                //Create a model for the current user
+                self.userKey = accountDictionary["key"] as? String
                 var isRegistered: Bool = accountDictionary["registered"] as! Bool
                 
                 if(isRegistered){
@@ -73,6 +78,23 @@ class UdacityClient: SimpleNetworking {
             }
         }
         
+    }
+    
+    func GETUserData(key:String, completion:(result: NSData?, error: NSError?) -> Void){
+        //We should not take self.userKey here, because we do not know, if it has been already retrieved in all contexts
+        
+        let getUserMethodString = "\(self.userInfoURL)" + "\(key)"
+        self.sendGETRequest(getUserMethodString, GETData: nil) { (result, error) -> Void in
+            
+            if(error != nil){
+                
+                completion(result: nil, error: error)
+            }
+            
+            completion(result:result, error: nil)
+        
+        }
+    
     }
     
 }

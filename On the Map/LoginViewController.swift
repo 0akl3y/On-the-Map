@@ -10,8 +10,7 @@ import UIKit
 class LoginViewController: UIViewController, LoginFeedbackDelegate {
     
     var activityIndicator: LoginFeedbackView?
-    var session: UdacityClient? //keep a strong reference to the current session
-    
+    var session: UdacityClient?
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -75,6 +74,12 @@ class LoginViewController: UIViewController, LoginFeedbackDelegate {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
                 self.activityIndicator?.stop()
+                let key = self.session!.userKey
+                let userData = UserModel(userKey: key!, session: self.session!)
+//                userData.getUserDataFromSession(self.session!)
+                
+                
+                
                 self.performSegueWithIdentifier("login", sender: self)
             })
         }
@@ -106,14 +111,14 @@ class LoginViewController: UIViewController, LoginFeedbackDelegate {
         if let suggestion = error.userInfo?[NSLocalizedRecoverySuggestionErrorKey] as? String{
             
             errorMessage += " \(suggestion)"
-            
         }
         
         return errorMessage
-    
     }
     
     @IBAction func proceedLogin(sender: UIButton) {
+        
+        //proceed the standard login to udacity
         
         self.startActivityIndicator()
         

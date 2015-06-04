@@ -13,6 +13,7 @@
 		8F0797651B0BCF440086BF5A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F0797641B0BCF440086BF5A /* Images.xcassets */; };
 		8F0797681B0BCF440086BF5A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F0797661B0BCF440086BF5A /* LaunchScreen.xib */; };
 		8F0797741B0BCF440086BF5A /* On_the_MapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0797731B0BCF440086BF5A /* On_the_MapTests.swift */; };
+		8F37AA4E1B20DED900F249BD /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F37AA4D1B20DED900F249BD /* UserModel.swift */; };
 		8F8ADB041B0BCFEB00B5063B /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8ADB011B0BCFEB00B5063B /* UdacityClient.swift */; };
 		8F8ADB051B0BCFEB00B5063B /* SimpleNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8ADB021B0BCFEB00B5063B /* SimpleNetworking.swift */; };
 		8F8ADB061B0BCFEB00B5063B /* GenericDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8ADB031B0BCFEB00B5063B /* GenericDataSource.swift */; };
@@ -47,6 +48,7 @@
 		8F07976D1B0BCF440086BF5A /* On the MapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "On the MapTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0797721B0BCF440086BF5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F0797731B0BCF440086BF5A /* On_the_MapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = On_the_MapTests.swift; sourceTree = "<group>"; };
+		8F37AA4D1B20DED900F249BD /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		8F8ADB011B0BCFEB00B5063B /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		8F8ADB021B0BCFEB00B5063B /* SimpleNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleNetworking.swift; sourceTree = "<group>"; };
 		8F8ADB031B0BCFEB00B5063B /* GenericDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericDataSource.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				8F8ADB031B0BCFEB00B5063B /* GenericDataSource.swift */,
+				8F37AA4D1B20DED900F249BD /* UserModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				8F07975E1B0BCF440086BF5A /* AppDelegate.swift in Sources */,
 				8F8ADB041B0BCFEB00B5063B /* UdacityClient.swift in Sources */,
 				8F8ADB051B0BCFEB00B5063B /* SimpleNetworking.swift in Sources */,
+				8F37AA4E1B20DED900F249BD /* UserModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,13 +20,13 @@ class SimpleNetworking: NSObject {
     }
     
     
-    func escapeToURL(targetURL: String, methodCall: [String: AnyObject]) -> String{
+    func escapeToURL(targetURL: String, methodCall: [String: AnyObject]?) -> String{
         
         //takes the methodCall array containing the method call and all parameters and returns the complete URL for the GET request
         
         var parsedURLString = [String]()
         
-        for (key, value) in methodCall {
+        for (key, value) in methodCall! {
             
             let currentValue: String = "\(value)".stringByAddingPercentEncodingWithAllowedCharacters( NSCharacterSet.URLQueryAllowedCharacterSet())!
             let methodElement = "\(key)" + "=" + "\(currentValue)"
@@ -65,29 +65,36 @@ class SimpleNetworking: NSObject {
             
         }
         task.resume()
+        
+        
     }
     
     
-    func sendGETRequest(targetURL: String, GETData: [String:AnyObject]){
+    func sendGETRequest(targetURL: String, GETData: [String:AnyObject]?, completion:(result:NSData?, error:NSError?) -> Void) {
             
             var requestURL: NSURL = NSURL(string: targetURL)!
         
+        if(GETData != nil){
+
             let requestURLString: String = self.escapeToURL(targetURL, methodCall: GETData)
             requestURL = NSURL(string: requestURLString)!
-                
+        }
         
             var currentRequest = NSMutableURLRequest(URL: requestURL)
         
             let task = sharedSession.dataTaskWithRequest(currentRequest) { data, response, error in
             
-            if error != nil { // Handle error…
+            if error != nil {
+                completion(result: nil, error: error!)
                 return
             }
             
             let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
-            println(NSString(data: newData, encoding: NSUTF8StringEncoding))
+            completion(result: newData, error: error)
+            
         }
         task.resume()
+        
             
     }
     
