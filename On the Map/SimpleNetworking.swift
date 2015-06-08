@@ -41,17 +41,33 @@ class SimpleNetworking: NSObject {
         return completeURL
     }
     
-    func sendPOSTRequest(targetURL: String, POSTData: [String:AnyObject], completion:(result:NSData?, error:NSError?) -> Void){
+    func sendJSONRequest(targetURL: String, method: String, additionalHeaderValues:[String:String]?, bodyData: [String:AnyObject]?, completion:(result:NSData?, error:NSError?) -> Void){
         
         let request = NSMutableURLRequest(URL: NSURL(string: targetURL)!)
         
-        request.HTTPMethod = "POST"
+        request.HTTPMethod = method
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
+        
+        if var additionalHeaderFields = additionalHeaderValues {
+            
+            for (key, value) in additionalHeaderFields{
+                
+                request.addValue(value , forHTTPHeaderField: key)
+            
+            }
+        
+        }
+        
         var JSONError: NSError? = nil
         
-        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(POSTData, options: nil, error: &JSONError)
+        if(bodyData != nil){
+            
+            request.HTTPBody = NSJSONSerialization.dataWithJSONObject(bodyData!, options: nil, error: &JSONError)
+        
+        }
+        
         
         let task = sharedSession.dataTaskWithRequest(request) { data, response, error in
             
@@ -60,8 +76,8 @@ class SimpleNetworking: NSObject {
                 return
             }
             
-            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
-            completion(result: newData, error: error)
+            //let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
+            completion(result: data, error: error)
             
         }
         task.resume()
@@ -70,17 +86,27 @@ class SimpleNetworking: NSObject {
     }
     
     
-    func sendGETRequest(targetURL: String, GETData: [String:AnyObject]?, completion:(result:NSData?, error:NSError?) -> Void) {
+    func sendGETRequest(targetURL: String, GETData: [String:AnyObject]?, headerValues:[String: String]?, completion:(result:NSData?, error:NSError?) -> Void) {
             
             var requestURL: NSURL = NSURL(string: targetURL)!
         
-        if(GETData != nil){
+            if(GETData != nil){
 
-            let requestURLString: String = self.escapeToURL(targetURL, methodCall: GETData)
-            requestURL = NSURL(string: requestURLString)!
-        }
+                let requestURLString: String = self.escapeToURL(targetURL, methodCall: GETData)
+                requestURL = NSURL(string: requestURLString)!
+            }
         
             var currentRequest = NSMutableURLRequest(URL: requestURL)
+        
+            if var additionalHeaderFields = headerValues {
+                
+                for (key, value) in additionalHeaderFields{
+                    
+                    currentRequest.addValue(value , forHTTPHeaderField: key)
+                    
+                }
+                
+            }
         
             let task = sharedSession.dataTaskWithRequest(currentRequest) { data, response, error in
             
@@ -89,8 +115,8 @@ class SimpleNetworking: NSObject {
                 return
             }
             
-            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
-            completion(result: newData, error: error)
+            //let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
+            completion(result: data, error: error)
             
         }
         task.resume()

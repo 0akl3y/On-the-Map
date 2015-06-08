@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "On the Map/UserModel.swift"
-            timestampString = "455149347.067047"
+            filePath = "On the Map/LoginViewController.swift"
+            timestampString = "455486752.262486"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "getUserDataFromSession(_:)"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "handleLoginResponse(_:error:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "On the Map/UserModel.swift"
-            timestampString = "455149361.44517"
+            filePath = "On the Map/LoginViewController.swift"
+            timestampString = "455486768.922242"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "getUserDataFromSession(_:)"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "handleLoginResponse(_:error:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "On the Map/LoginViewController.swift"
+            timestampString = "455486771.519729"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "handleLoginResponse(_:error:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "On the Map/LoginViewController.swift"
+            timestampString = "455486789.842023"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "handleLoginResponse(_:error:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -29,7 +29,7 @@ class UdacityClient: SimpleNetworking {
     func POSTSessionRequest(completion:(success: Bool, error: NSError?) -> Void) -> Void{
     
         
-        self.sendPOSTRequest(sessionURL, POSTData: loginCredentials) { (result, error) -> Void in
+        self.sendJSONRequest(sessionURL, method:"POST", additionalHeaderValues:nil,  bodyData: loginCredentials) { (result, error) -> Void in
             
             if(error != nil){
 
@@ -37,7 +37,8 @@ class UdacityClient: SimpleNetworking {
                 return
             }
             
-            let parsedResult: AnyObject! = NSJSONSerialization.JSONObjectWithData(result!, options: NSJSONReadingOptions.AllowFragments, error: nil)
+            let newResult = result!.subdataWithRange(NSMakeRange(5, result!.length - 5))
+            let parsedResult: AnyObject! = NSJSONSerialization.JSONObjectWithData(newResult, options: NSJSONReadingOptions.AllowFragments, error: nil)
             
             if var accountDictionary = parsedResult.valueForKey("account") as? [String: AnyObject]{
                 //the login succeeded
@@ -84,14 +85,15 @@ class UdacityClient: SimpleNetworking {
         //We should not take self.userKey here, because we do not know, if it has been already retrieved in all contexts
         
         let getUserMethodString = "\(self.userInfoURL)" + "\(key)"
-        self.sendGETRequest(getUserMethodString, GETData: nil) { (result, error) -> Void in
+        self.sendGETRequest(getUserMethodString, GETData: nil, headerValues:nil ) { (result, error) -> Void in
             
             if(error != nil){
                 
                 completion(result: nil, error: error)
             }
             
-            completion(result:result, error: nil)
+            let newResult = result!.subdataWithRange(NSMakeRange(5, result!.length - 5))
+            completion(result:newResult, error: nil)
         
         }
     
