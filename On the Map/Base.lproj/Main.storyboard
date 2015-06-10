@@ -150,7 +150,24 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1093" y="329"/>
+            <point key="canvasLocation" x="1279" y="321"/>
+        </scene>
+        <!--List-->
+        <scene sceneID="5u6-ME-XV1">
+            <objects>
+                <navigationController id="Xdo-di-yee" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="List" image="list" id="GSr-hg-Rch"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="42k-dM-May">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Smt-Db-UcC" kind="relationship" relationship="rootViewController" id="JrP-B0-uMh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q5U-lM-TIT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2137" y="662"/>
         </scene>
         <!--List-->
         <scene sceneID="NPv-jG-y3J">
@@ -165,11 +182,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="List" image="list" id="0ei-gO-aSG"/>
+                    <navigationItem key="navigationItem" id="LP0-iR-HgU"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vZS-zI-cC3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2117" y="643"/>
+            <point key="canvasLocation" x="2516" y="662"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="eBc-eT-qIi">
+            <objects>
+                <navigationController id="ze3-LA-tpF" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Map" image="map" id="tHm-xn-Bmx"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lce-Jw-ClN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="QD6-Lb-Qmt" kind="relationship" relationship="rootViewController" id="ZEI-CM-7QY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6t7-0l-azo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2137" y="-61"/>
         </scene>
         <!--Map-->
         <scene sceneID="O5t-lj-3gv">
@@ -182,13 +216,27 @@
                     <view key="view" contentMode="scaleToFill" id="eZn-Jc-ZX2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cce-kq-BXv">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" secondItem="cce-kq-BXv" secondAttribute="height" id="9wS-So-1GJ"/>
+                            <constraint firstAttribute="centerY" secondItem="cce-kq-BXv" secondAttribute="centerY" id="bDN-WN-9F4"/>
+                            <constraint firstAttribute="centerX" secondItem="cce-kq-BXv" secondAttribute="centerX" id="hJj-bT-0Is"/>
+                            <constraint firstAttribute="width" secondItem="cce-kq-BXv" secondAttribute="width" id="xia-RD-OxG"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" image="map" id="TnI-wm-2bI"/>
+                    <navigationItem key="navigationItem" id="Lbh-hp-9iQ"/>
+                    <connections>
+                        <outlet property="mapView" destination="cce-kq-BXv" id="lfz-Lp-Hq5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZF5-wE-Hbt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2118" y="13"/>
+            <point key="canvasLocation" x="2493" y="-61"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="1WI-YS-IiN">
@@ -201,13 +249,13 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="QD6-Lb-Qmt" kind="relationship" relationship="viewControllers" id="hyY-I6-t9i"/>
-                        <segue destination="Smt-Db-UcC" kind="relationship" relationship="viewControllers" id="Y3c-xL-da4"/>
+                        <segue destination="ze3-LA-tpF" kind="relationship" relationship="viewControllers" id="G8F-xi-Z5p"/>
+                        <segue destination="Xdo-di-yee" kind="relationship" relationship="viewControllers" id="1ZH-Vg-b71"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a29-UK-5gy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1531" y="329"/>
+            <point key="canvasLocation" x="1716" y="321"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Mbo-sM-ULX">
@@ -225,7 +273,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EWN-cA-LJb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="561" y="329"/>
+            <point key="canvasLocation" x="821" y="321"/>
         </scene>
     </scenes>
     <resources>

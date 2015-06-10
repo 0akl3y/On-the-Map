@@ -25,7 +25,7 @@ class ParseClient: SimpleNetworking {
             let parsedResult: AnyObject! = NSJSONSerialization.JSONObjectWithData(result!, options: NSJSONReadingOptions.AllowFragments, error: nil)
             
             let studentLocations = parsedResult.valueForKey("results") as? [[String: AnyObject]]
-            completion(result: studentLocations, error: error!)
+            completion(result: studentLocations, error: error)
         }
     }
     
