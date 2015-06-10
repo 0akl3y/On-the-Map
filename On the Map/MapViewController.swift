@@ -11,9 +11,8 @@ import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
     
-    
-    
     @IBOutlet weak var mapView: MKMapView!
+    
     var locations:[AnyObject]?
     var annotationList = [MKPointAnnotation]()
     
@@ -24,6 +23,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.mapView.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
         
         let parseClient = ParseClient()
