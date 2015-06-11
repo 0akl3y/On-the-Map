@@ -18,6 +18,7 @@
 		8F8ADB051B0BCFEB00B5063B /* SimpleNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8ADB021B0BCFEB00B5063B /* SimpleNetworking.swift */; };
 		8F8ADB061B0BCFEB00B5063B /* GenericDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8ADB031B0BCFEB00B5063B /* GenericDataSource.swift */; };
 		8F8ADB091B0BD15700B5063B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8ADB081B0BD15700B5063B /* MapViewController.swift */; };
+		8FDEEBD81B2951CF0065E72C /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDEEBD71B2951CF0065E72C /* ListViewController.swift */; };
 		8FE581C01B1BA1BA00021555 /* ErrorDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE581BF1B1BA1BA00021555 /* ErrorDialog.swift */; };
 		8FE5E1A91B12942000AA2DE4 /* LoginFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE5E1A81B12942000AA2DE4 /* LoginFeedbackView.swift */; };
 		8FEA9D031B24D15700059913 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEA9D021B24D15700059913 /* ParseClient.swift */; };
@@ -55,6 +56,7 @@
 		8F8ADB021B0BCFEB00B5063B /* SimpleNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleNetworking.swift; sourceTree = "<group>"; };
 		8F8ADB031B0BCFEB00B5063B /* GenericDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericDataSource.swift; sourceTree = "<group>"; };
 		8F8ADB081B0BD15700B5063B /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		8FDEEBD71B2951CF0065E72C /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		8FE581BF1B1BA1BA00021555 /* ErrorDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorDialog.swift; sourceTree = "<group>"; };
 		8FE5E1A81B12942000AA2DE4 /* LoginFeedbackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginFeedbackView.swift; sourceTree = "<group>"; };
 		8FEA9D021B24D15700059913 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				8FE581BF1B1BA1BA00021555 /* ErrorDialog.swift */,
 				8FE5E1A81B12942000AA2DE4 /* LoginFeedbackView.swift */,
 				8F07975F1B0BCF440086BF5A /* LoginViewController.swift */,
+				8FDEEBD71B2951CF0065E72C /* ListViewController.swift */,
 				8F8ADB081B0BD15700B5063B /* MapViewController.swift */,
 				8F0797641B0BCF440086BF5A /* Images.xcassets */,
 				8F0797661B0BCF440086BF5A /* LaunchScreen.xib */,
@@ -281,6 +284,7 @@
 				8F8ADB061B0BCFEB00B5063B /* GenericDataSource.swift in Sources */,
 				8FE581C01B1BA1BA00021555 /* ErrorDialog.swift in Sources */,
 				8FF199E81B0E66FC00C5032F /* UdacityStandardLogin.swift in Sources */,
+				8FDEEBD81B2951CF0065E72C /* ListViewController.swift in Sources */,
 				8F8ADB091B0BD15700B5063B /* MapViewController.swift in Sources */,
 				8FEA9D031B24D15700059913 /* ParseClient.swift in Sources */,
 				8F0797601B0BCF440086BF5A /* LoginViewController.swift in Sources */,

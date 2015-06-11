@@ -16,7 +16,7 @@ class GenericDataSource: NSObject, UITableViewDataSource, UICollectionViewDataSo
     var cellHandling: (cell: AnyObject) -> AnyObject
     
     //Find out which class the element is
-    init(viewElement: AnyObject, data: [AnyObject], cellHandling: (cell: AnyObject) -> AnyObject){
+    init(data: [AnyObject], cellHandling: (cell: AnyObject) -> AnyObject){
         
         self.cellHandling = cellHandling
         self.inputData = data
