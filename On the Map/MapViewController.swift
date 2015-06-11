@@ -14,7 +14,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     
     var locations:[AnyObject]?
-    var annotationList = [MKPointAnnotation]()
+    
+    var cache:CachedResponses {
+        get{ return CachedResponses.cachedResponses() }
+    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
@@ -29,15 +32,20 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         let parseClient = ParseClient()
         
-        parseClient.GETStudentLocations { (result, error) -> Void in
-            self.locations = result
-            for loc in self.locations!{
-                
-                let annotationItem = self.generateMapAnnotation(loc as! [String : AnyObject])
-                self.annotationList.append(annotationItem)
-                self.mapView.addAnnotations(self.annotationList)
+        // Take the data from cache if already there otherwise download them again
 
+        if (self.cache.locations == nil){
+            
+            parseClient.GETStudentLocations { (result, error) -> Void in
+                self.cache.locations = result
+                self.generateMapAnnotationsForMapView(self.mapView, locationDict: self.cache.locations!)
             }
+        }
+            
+        else {
+            
+            self.generateMapAnnotationsForMapView(self.mapView, locationDict: self.cache.locations!)
+
         }
     }
     
@@ -66,6 +74,22 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         return annotation
         // Finally we place the annotation in an array of annotations.
+    }
+    
+    func generateMapAnnotationsForMapView(mapView:MKMapView, locationDict:[[String: AnyObject]]) -> Void{
+        
+        //Generate the Annotations for mapView
+        
+        var annotationList = [MKPointAnnotation]()
+        
+        for location in locationDict{
+            
+            let annotationItem = self.generateMapAnnotation(location as [String : AnyObject])
+            annotationList.append(annotationItem)
+           
+        }
+        
+         mapView.addAnnotations(annotationList)
     }
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {

@@ -76,38 +76,9 @@ class LoginViewController: UIViewController, LoginFeedbackDelegate {
                 self.activityIndicator?.stop()
                 let key = self.session!.userKey
                 let userData = UserModel(userKey: key!, session: self.session!)
-
-                var test = ParseClient()
                 
-                var testLocation = StudentLocation(firstName: "John", lastName: "Doe", latitude: 30.05 , longitude: -122.083851, mapString: "Test Town", uniqueKey: "1234", mediaURL: "https:gmx.de")
-                
-                /* tests
-                test.POSTStudentLocations(testPerson, completion: { (result, error) -> Void in
-                    println(result)
-                })
-                
-                test.queryStudentLocation(["uniqueKey": "1234"], completion: { (result, error) -> Void in
-                
-                    println(result!)
-                })
-
-                test.updateStudentLocation("8ZExGR5uX8", newData: testLocation, completion: { (result, error) -> Void in
-                    
-                    if (error == nil){
-                        println(result)
-                        
-                    }
-                    
-                    else {
-                        
-                        println(self.generateErrorMessageString(error!))
-                        
-                    }
-                    
-                })
-                */
-
                 self.performSegueWithIdentifier("login", sender: self)
+                
             })
         }
             
@@ -148,7 +119,7 @@ class LoginViewController: UIViewController, LoginFeedbackDelegate {
         //proceed the standard login to udacity
         
         self.startActivityIndicator()
-                
+        
         self.session = UdacityStandardLogin(username: self.emailField.text, password: self.passwordField.text)
         self.session!.POSTSessionRequest { (success, error) -> Void in
                         
