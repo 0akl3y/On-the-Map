@@ -49,18 +49,15 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         return self.cache.locations!.count
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return self.cache.locations!.count
-    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
         
-        let currentDict = self.cache.locations![indexPath.row]
+        let currentLocation = self.cache.locations![indexPath.row]
         
-        let firstName: String = currentDict["firstName"] as! String
-        let lastName: String = currentDict["lastName"] as! String
-        let mediaURL: String = currentDict["mediaURL"] as! String
+        let firstName: String = currentLocation["firstName"] as! String
+        let lastName: String = currentLocation["lastName"] as! String
+        let mediaURL: String = currentLocation["mediaURL"] as! String
         
         cell.textLabel!.text = "\(firstName) \(lastName)"
         cell.detailTextLabel!.text = "\(mediaURL)"
@@ -70,14 +67,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        
     }
-    */
 
 }

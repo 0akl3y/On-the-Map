@@ -7,6 +7,21 @@
 //
 
 
+enum StudentLocationKey: String {
+    
+    case firstNameKey = "firstName"
+    case lastNameKey = "lastName"
+    case latitudeKey = "latitude"
+    case longitudeKey = "longitude"
+    case mapStringKey = "mapString"
+    case uniqueKeyKey = "uniqueKey"
+    
+    case objectIDKey = "objectID"
+    case mediaURLKey = "mediaURL"
+
+}
+
+
 struct StudentLocation {
     
     let firstName: String!
@@ -20,16 +35,17 @@ struct StudentLocation {
     var mediaURL: String?
 
     
-    init(firstName:String, lastName:String, latitude:Float, longitude:Float, mapString:String, uniqueKey: String, mediaURL:String?){
-    
-        self.firstName = firstName
-        self.lastName = lastName
-        self.latitude = latitude
-        self.longitude = longitude
-        self.mapString = mapString
-        self.uniqueKey = uniqueKey
+    init(placeAttributeDict:[String: AnyObject]){
+        
+        self.firstName = placeAttributeDict[StudentLocationKey.firstNameKey.rawValue] as! String
+        self.lastName = placeAttributeDict[StudentLocationKey.lastNameKey.rawValue] as! String
+        self.latitude = placeAttributeDict[StudentLocationKey.latitudeKey.rawValue] as! Float
+        self.longitude = placeAttributeDict[StudentLocationKey.longitudeKey.rawValue] as! Float
+        self.mapString = placeAttributeDict[StudentLocationKey.mapStringKey.rawValue] as! String
+        self.uniqueKey = placeAttributeDict[StudentLocationKey.uniqueKeyKey.rawValue] as! String
         
         self.mediaURL = (mediaURL != nil) ? mediaURL : nil
+    
     
     }
     
