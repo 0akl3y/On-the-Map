@@ -13,7 +13,7 @@ let _cachedResponses: CachedResponses = { CachedResponses() }()
 
 class CachedResponses: NSObject {
     
-    var locations: [[String:AnyObject]]?
+    var locations = [StudentLocation]()
     var userData: UserModel?
     
     class func cachedResponses() -> CachedResponses {

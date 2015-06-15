@@ -44,7 +44,7 @@ struct StudentLocation {
         self.mapString = placeAttributeDict[StudentLocationKey.mapStringKey.rawValue] as! String
         self.uniqueKey = placeAttributeDict[StudentLocationKey.uniqueKeyKey.rawValue] as! String
         
-        self.mediaURL = (mediaURL != nil) ? mediaURL : nil
+        self.mediaURL = placeAttributeDict[StudentLocationKey.mediaURLKey.rawValue] as? String
     
     
     }

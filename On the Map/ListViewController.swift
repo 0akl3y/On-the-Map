@@ -25,13 +25,17 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         
         var parseClient = ParseClient()
-        if (self.cache.locations == nil){
+        if (self.cache.locations.count < 1){
             
             parseClient.GETStudentLocations { (result, error) -> Void in
-                self.cache.locations = result
+                for locationEntry in result! {
+                    
+                    let newLocations = StudentLocation(placeAttributeDict: locationEntry)
+                    self.cache.locations.append(newLocations)
+                    
+                }
             }
-        }
-        
+        }        
         
         listView.delegate = self
         listView.dataSource = self
@@ -46,18 +50,18 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.cache.locations!.count
+        return self.cache.locations.count
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
         
-        let currentLocation = self.cache.locations![indexPath.row]
+        let currentLocation = self.cache.locations[indexPath.row] as StudentLocation
         
-        let firstName: String = currentLocation["firstName"] as! String
-        let lastName: String = currentLocation["lastName"] as! String
-        let mediaURL: String = currentLocation["mediaURL"] as! String
+        let firstName: String = currentLocation.firstName
+        let lastName: String = currentLocation.lastName
+        let mediaURL: String = currentLocation.mediaURL!
         
         cell.textLabel!.text = "\(firstName) \(lastName)"
         cell.detailTextLabel!.text = "\(mediaURL)"

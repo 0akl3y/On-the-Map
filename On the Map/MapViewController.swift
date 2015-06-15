@@ -14,13 +14,26 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     
     var locations:[AnyObject]?
-    
     var cache:CachedResponses {
         get{ return CachedResponses.cachedResponses() }
     }
     
+    var logoutButton:UIBarButtonItem!
+    var addLocationButton: UIBarButtonItem!
+    var reloadLocationsButton: UIBarButtonItem!
+    
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
+        
+        // draw the buttons
+        
+        self.logoutButton = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.Plain, target: self, action: "logout:")
+        self.addLocationButton = UIBarButtonItem(image: UIImage(named: "pin"), style: UIBarButtonItemStyle.Plain, target: self, action: "addLocation")
+        self.reloadLocationsButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "reloadLocations")
+        
+        self.navigationItem.leftBarButtonItem = self.logoutButton
+        self.navigationItem.rightBarButtonItems = [self.addLocationButton, self.reloadLocationsButton]
 
     }
     
@@ -34,17 +47,22 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         // Take the data from cache if already there otherwise download them again
 
-        if (self.cache.locations == nil){
+        if (self.cache.locations.count < 1){
             
             parseClient.GETStudentLocations { (result, error) -> Void in
-                self.cache.locations = result
-                self.generateMapAnnotationsForMapView(self.mapView, locationDict: self.cache.locations!)
+                for locationEntry in result! {
+                    
+                    let newLocations = StudentLocation(placeAttributeDict: locationEntry)
+                    self.cache.locations.append(newLocations)
+                    
+                }
+                self.generateMapAnnotationsForMapView(self.mapView, studentLocations: self.cache.locations)
             }
         }
             
         else {
             
-            self.generateMapAnnotationsForMapView(self.mapView, locationDict: self.cache.locations!)
+            self.generateMapAnnotationsForMapView(self.mapView, studentLocations: self.cache.locations)
 
         }
     }
@@ -54,17 +72,17 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func generateMapAnnotation(locationDict:[String: AnyObject]) -> MKPointAnnotation {
+    func generateMapAnnotation(studentLocation:StudentLocation) -> MKPointAnnotation {
         
-        let lat = CLLocationDegrees(locationDict["latitude"] as! Double)
-        let long = CLLocationDegrees(locationDict["longitude"] as! Double)
+        let lat = CLLocationDegrees(studentLocation.latitude)
+        let long = CLLocationDegrees(studentLocation.longitude)
         
         // The lat and long are used to create a CLLocationCoordinates2D instance.
         let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
         
-        let first = locationDict["firstName"] as! String
-        let last = locationDict["lastName"] as! String
-        let mediaURL = locationDict["mediaURL"] as! String
+        let first = studentLocation.firstName
+        let last = studentLocation.lastName
+        let mediaURL = studentLocation.mediaURL!
         
         // Here we create the annotation and set its coordiate, title, and subtitle properties
         var annotation = MKPointAnnotation()
@@ -76,15 +94,15 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         // Finally we place the annotation in an array of annotations.
     }
     
-    func generateMapAnnotationsForMapView(mapView:MKMapView, locationDict:[[String: AnyObject]]) -> Void{
+    func generateMapAnnotationsForMapView(mapView:MKMapView, studentLocations:[StudentLocation]) -> Void{
         
         //Generate the Annotations for mapView
         
         var annotationList = [MKPointAnnotation]()
         
-        for location in locationDict{
+        for location in studentLocations{
             
-            let annotationItem = self.generateMapAnnotation(location as [String : AnyObject])
+            let annotationItem = self.generateMapAnnotation(location)
             annotationList.append(annotationItem)
            
         }
@@ -125,6 +143,18 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    func logout(sender:UIBarButtonItem){
+        
+        let FBSession = FBSDKLoginManager()
+        FBSession.logOut()
+        
+        self.dismissViewControllerAnimated(true, completion: nil)        
+    
+    }
+    
+    func addLocation(sender:UIBarButtonItem){}
+    
+    func reloadLocation(sender:UIBarButtonItem){}
     
    
 }
