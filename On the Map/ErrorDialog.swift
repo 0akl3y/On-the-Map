@@ -9,6 +9,8 @@
 import UIKit
 import CoreGraphics
 
+
+
 @objc protocol ErrorDialogDelegate {
     
     func errorDialogCloseButtonPressed() -> Void
@@ -82,7 +84,20 @@ class ErrorDialog: UIView
         
     }
     
-    func setErrorMessage(errorMessage:String){
+    func setErrorMessage(error:NSError){
+        
+        
+        //Build error Message String
+        
+        var errorMessage: String = "\(error.domain)" + " \(String(error.code))" + ": " + "\(error.userInfo![NSLocalizedDescriptionKey]!)"
+        
+        //Add RecoverySuggestion only if there actually is one
+        
+        if let suggestion = error.userInfo?[NSLocalizedRecoverySuggestionErrorKey] as? String{
+            
+            errorMessage += " \(suggestion)"
+        }
+
         
         self.messageLabel.text = errorMessage
     

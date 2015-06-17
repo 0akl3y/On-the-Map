@@ -19,8 +19,8 @@
 		8F8ADB091B0BD15700B5063B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8ADB081B0BD15700B5063B /* MapViewController.swift */; };
 		8FDEEBD81B2951CF0065E72C /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDEEBD71B2951CF0065E72C /* ListViewController.swift */; };
 		8FE00DE71B29EECC000C25CB /* CachedResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE00DE61B29EECC000C25CB /* CachedResponses.swift */; };
+		8FE45F691B2F67D9002A05C8 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE45F681B2F67D9002A05C8 /* StatusViewController.swift */; };
 		8FE581C01B1BA1BA00021555 /* ErrorDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE581BF1B1BA1BA00021555 /* ErrorDialog.swift */; };
-		8FE5E1A91B12942000AA2DE4 /* LoginFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE5E1A81B12942000AA2DE4 /* LoginFeedbackView.swift */; };
 		8FEA9D031B24D15700059913 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEA9D021B24D15700059913 /* ParseClient.swift */; };
 		8FEA9D051B24F4B300059913 /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEA9D041B24F4B300059913 /* StudentLocation.swift */; };
 		8FF199E61B0E65CC00C5032F /* UdacityFacebookAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF199E51B0E65CC00C5032F /* UdacityFacebookAuth.swift */; };
@@ -28,6 +28,7 @@
 		8FF199EA1B0E754000C5032F /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF199E91B0E754000C5032F /* FBSDKCoreKit.framework */; };
 		8FF199EC1B0E760F00C5032F /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF199EB1B0E760F00C5032F /* FBSDKLoginKit.framework */; };
 		8FF199EF1B0E79BF00C5032F /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF199EE1B0E79BF00C5032F /* FBSDKShareKit.framework */; };
+		8FF231B51B32200A000C5E53 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF231B41B32200A000C5E53 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,8 +58,8 @@
 		8F8ADB081B0BD15700B5063B /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		8FDEEBD71B2951CF0065E72C /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		8FE00DE61B29EECC000C25CB /* CachedResponses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedResponses.swift; sourceTree = "<group>"; };
+		8FE45F681B2F67D9002A05C8 /* StatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		8FE581BF1B1BA1BA00021555 /* ErrorDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorDialog.swift; sourceTree = "<group>"; };
-		8FE5E1A81B12942000AA2DE4 /* LoginFeedbackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginFeedbackView.swift; sourceTree = "<group>"; };
 		8FEA9D021B24D15700059913 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 		8FEA9D041B24F4B300059913 /* StudentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
 		8FF199E51B0E65CC00C5032F /* UdacityFacebookAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityFacebookAuth.swift; sourceTree = "<group>"; };
@@ -67,6 +68,7 @@
 		8FF199EB1B0E760F00C5032F /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		8FF199ED1B0E763A00C5032F /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		8FF199EE1B0E79BF00C5032F /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
+		8FF231B41B32200A000C5E53 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,10 +119,11 @@
 				8F0797611B0BCF440086BF5A /* Main.storyboard */,
 				8F07975D1B0BCF440086BF5A /* AppDelegate.swift */,
 				8FE581BF1B1BA1BA00021555 /* ErrorDialog.swift */,
-				8FE5E1A81B12942000AA2DE4 /* LoginFeedbackView.swift */,
+				8FE45F681B2F67D9002A05C8 /* StatusViewController.swift */,
 				8F07975F1B0BCF440086BF5A /* LoginViewController.swift */,
 				8FDEEBD71B2951CF0065E72C /* ListViewController.swift */,
 				8F8ADB081B0BD15700B5063B /* MapViewController.swift */,
+				8FF231B41B32200A000C5E53 /* ViewController.swift */,
 				8F0797641B0BCF440086BF5A /* Images.xcassets */,
 				8F0797661B0BCF440086BF5A /* LaunchScreen.xib */,
 				8F8ADB0A1B0BD1B300B5063B /* Model */,
@@ -278,13 +281,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FF231B51B32200A000C5E53 /* ViewController.swift in Sources */,
 				8FF199E61B0E65CC00C5032F /* UdacityFacebookAuth.swift in Sources */,
 				8FEA9D051B24F4B300059913 /* StudentLocation.swift in Sources */,
-				8FE5E1A91B12942000AA2DE4 /* LoginFeedbackView.swift in Sources */,
 				8FE00DE71B29EECC000C25CB /* CachedResponses.swift in Sources */,
 				8FE581C01B1BA1BA00021555 /* ErrorDialog.swift in Sources */,
 				8FF199E81B0E66FC00C5032F /* UdacityStandardLogin.swift in Sources */,
 				8FDEEBD81B2951CF0065E72C /* ListViewController.swift in Sources */,
+				8FE45F691B2F67D9002A05C8 /* StatusViewController.swift in Sources */,
 				8F8ADB091B0BD15700B5063B /* MapViewController.swift in Sources */,
 				8FEA9D031B24D15700059913 /* ParseClient.swift in Sources */,
 				8F0797601B0BCF440086BF5A /* LoginViewController.swift in Sources */,

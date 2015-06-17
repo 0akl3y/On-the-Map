@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "On the Map/MapViewController.swift"
-            timestampString = "456038878.098787"
+            filePath = "On the Map/StatusViewController.swift"
+            timestampString = "456267408.07418"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
-            landmarkName = "mapView(_:annotationView:calloutAccessoryControlTapped:)"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "errorDialogCloseButtonPressed()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "On the Map/MapViewController.swift"
-            timestampString = "456038878.098787"
+            filePath = "On the Map/LoginViewController.swift"
+            timestampString = "456268008.524941"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
-            landmarkName = "mapView(_:annotationView:calloutAccessoryControlTapped:)"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "proceedLogin(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "On the Map/StudentLocation.swift"
-            timestampString = "455780321.45371"
+            filePath = "On the Map/LoginViewController.swift"
+            timestampString = "456268008.524941"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "getAttrDictionary()"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "handleLoginResponse(_:error:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,46 +57,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "On the Map/MapViewController.swift"
-            timestampString = "456038878.098787"
+            filePath = "On the Map/LoginViewController.swift"
+            timestampString = "456268008.524941"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "startActivityIndicator()"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "On_the_Map.MapViewController.(viewDidLoad (On_the_Map.MapViewController) -&gt; () -&gt; ()).(closure #1)"
-                  moduleName = "On the Map"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/johannes/Developer/On%20the%20Map/On%20the%20Map/MapViewController.swift"
-                  timestampString = "455839360.86034"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "2015">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "On_the_Map.MapViewController.(viewDidLoad (On_the_Map.MapViewController) -&gt; () -&gt; ()).(closure #1)"
-                  moduleName = "On the Map"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/johannes/Developer/On%20the%20Map/On%20the%20Map/MapViewController.swift"
-                  timestampString = "455839360.860644"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "2027">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

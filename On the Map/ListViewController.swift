@@ -27,13 +27,9 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         var parseClient = ParseClient()
         if (self.cache.locations.count < 1){
             
-            parseClient.GETStudentLocations { (result, error) -> Void in
-                for locationEntry in result! {
-                    
-                    let newLocations = StudentLocation(placeAttributeDict: locationEntry)
-                    self.cache.locations.append(newLocations)
-                    
-                }
+            parseClient.GETStudentLocations { (error) -> Void in
+                
+                if(error != nil){println(error)}
             }
         }        
         

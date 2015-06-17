@@ -19,7 +19,7 @@ class UdacityFacebookAuth: UdacityClient {
         let credentials = ["facebook_mobile": ["access_token": accessToken]]
         super.init(loginCredentials: credentials)        
     
-    }
+    }        
 
 }
 

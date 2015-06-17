@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, MKMapViewDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, StatusViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -22,15 +22,19 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     var addLocationButton: UIBarButtonItem!
     var reloadLocationsButton: UIBarButtonItem!
     
+
+    var errorMessageVC: StatusViewController?
+    var annotationList = [MKPointAnnotation]()
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
         // draw the buttons
+
         
         self.logoutButton = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.Plain, target: self, action: "logout:")
-        self.addLocationButton = UIBarButtonItem(image: UIImage(named: "pin"), style: UIBarButtonItemStyle.Plain, target: self, action: "addLocation")
-        self.reloadLocationsButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "reloadLocations")
+        self.addLocationButton = UIBarButtonItem(image: UIImage(named: "pin"), style: UIBarButtonItemStyle.Plain, target: self, action: "addLocation:")
+        self.reloadLocationsButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "reloadLocation:")
         
         self.navigationItem.leftBarButtonItem = self.logoutButton
         self.navigationItem.rightBarButtonItems = [self.addLocationButton, self.reloadLocationsButton]
@@ -43,21 +47,15 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         self.mapView.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
         
-        let parseClient = ParseClient()
+        
         
         // Take the data from cache if already there otherwise download them again
 
         if (self.cache.locations.count < 1){
             
-            parseClient.GETStudentLocations { (result, error) -> Void in
-                for locationEntry in result! {
-                    
-                    let newLocations = StudentLocation(placeAttributeDict: locationEntry)
-                    self.cache.locations.append(newLocations)
-                    
-                }
-                self.generateMapAnnotationsForMapView(self.mapView, studentLocations: self.cache.locations)
-            }
+            self.loadLocations()
+            self.generateMapAnnotationsForMapView(self.mapView, studentLocations: self.cache.locations)
+
         }
             
         else {
@@ -98,16 +96,63 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         //Generate the Annotations for mapView
         
-        var annotationList = [MKPointAnnotation]()
-        
         for location in studentLocations{
             
             let annotationItem = self.generateMapAnnotation(location)
-            annotationList.append(annotationItem)
-           
+            self.annotationList.append(annotationItem)
         }
         
-         mapView.addAnnotations(annotationList)
+         mapView.addAnnotations(self.annotationList)
+    }
+    
+    func updateButtonStatus(){
+        //Disable the reloadButton when an error message is presented
+        
+        if(self.errorMessageVC != nil){
+            
+            var buttonsEnabled = (!self.errorMessageVC!.view.isDescendantOfView(self.view))
+
+            self.reloadLocationsButton.enabled = buttonsEnabled
+            self.addLocationButton.enabled = buttonsEnabled
+            self.logoutButton.enabled = buttonsEnabled
+
+        }
+    }
+    
+    func loadLocations(){
+        
+        let parseClient = ParseClient()
+        
+        parseClient.GETStudentLocations { (error) -> Void in
+            
+            if(error == nil){
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    
+                    self.generateMapAnnotationsForMapView(self.mapView, studentLocations: self.cache.locations)
+                    self.updateButtonStatus()
+                })                
+            
+            }
+            
+            else{
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    
+                    self.errorMessageVC = StatusViewController()
+                    self.errorMessageVC!.delegate = self
+                    self.errorMessageVC!.error = error
+                    self.addChildViewController(self.errorMessageVC!)
+                    
+                    self.view.addSubview(self.errorMessageVC!.view)
+                    self.errorMessageVC!.didMoveToParentViewController(self)
+                    self.errorMessageVC!.showLoginErrorMessage()
+                    self.updateButtonStatus()
+                })
+            }
+            
+        }
+        
     }
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
@@ -126,16 +171,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         else{
             
             pinView!.annotation = annotation
-        
         }
         
         return pinView
         
     }
+
     
     func mapView(mapView: MKMapView!, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        
-        println(control)
         
         if control == annotationView.rightCalloutAccessoryView {
             let app = UIApplication.sharedApplication()
@@ -147,14 +190,30 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         let FBSession = FBSDKLoginManager()
         FBSession.logOut()
+        FBSDKAccessToken.setCurrentAccessToken(nil)
         
+        self.cache.userData = nil
         self.dismissViewControllerAnimated(true, completion: nil)        
     
+    }    
+    
+    func addLocations(sender:UIBarButtonItem){}
+    
+    func reloadLocation(sender:UIBarButtonItem){
+        
+        self.cache.locations.removeAll(keepCapacity: false)
+        self.mapView.removeAnnotations(self.annotationList)
+        
+        self.loadLocations()
     }
     
-    func addLocation(sender:UIBarButtonItem){}
+    func didActivateRetryAction() {
+        self.loadLocations()
+    }
     
-    func reloadLocation(sender:UIBarButtonItem){}
+    func didCloseErrorDialog() {
+        self.updateButtonStatus()
+    }
     
    
 }

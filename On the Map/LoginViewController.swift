@@ -7,10 +7,14 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, LoginFeedbackDelegate {
+class LoginViewController: UIViewController, StatusViewDelegate {
     
-    var activityIndicator: LoginFeedbackView?
+    var activityIndicatorVC:StatusViewController?
     var session: UdacityClient?
+    
+    var cache:CachedResponses {
+        get{ return CachedResponses.cachedResponses() }
+    }
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -47,22 +51,22 @@ class LoginViewController: UIViewController, LoginFeedbackDelegate {
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(true)
+        self.emailField.text = nil
+        self.passwordField.text = nil
         
-    }
-
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        
-        //rescale when device orientation is changed
-        self.activityIndicator?.frame.size = size
-        self.activityIndicator?.recenterSpinner()
     }
     
     func startActivityIndicator(){
         
-        self.activityIndicator = LoginFeedbackView(frame: self.view.frame)
-        self.activityIndicator!.delegate = self
-        self.view.addSubview(activityIndicator!)
-        self.activityIndicator!.start()
+        self.activityIndicatorVC = StatusViewController()
+
+        self.activityIndicatorVC!.delegate = self
+        self.addChildViewController(self.activityIndicatorVC!)
+        
+        self.view.addSubview(self.activityIndicatorVC!.view)
+        self.activityIndicatorVC!.didMoveToParentViewController(self)
+
+        self.activityIndicatorVC!.startSpinner()
     
     }
         
@@ -73,9 +77,10 @@ class LoginViewController: UIViewController, LoginFeedbackDelegate {
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
-                self.activityIndicator?.stop()
+                self.activityIndicatorVC!.stopSpinner()
                 let key = self.session!.userKey
                 let userData = UserModel(userKey: key!, session: self.session!)
+                self.cache.userData = userData
                 
                 self.performSegueWithIdentifier("login", sender: self)
                 
@@ -87,8 +92,8 @@ class LoginViewController: UIViewController, LoginFeedbackDelegate {
             if var currentError = error{
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    var errorDomain: String = error!.domain
-                    self.activityIndicator?.showLoginErrorMessage(self.generateErrorMessageString(error!), errorDomain: errorDomain)
+                    self.activityIndicatorVC!.error = error
+                    self.activityIndicatorVC!.showLoginErrorMessage()
                 })
                 
             }
@@ -96,29 +101,13 @@ class LoginViewController: UIViewController, LoginFeedbackDelegate {
         }
     
     }
-    
-    func generateErrorMessageString(error: NSError) -> String{
         
-        //Build error Message String
-        
-        var errorMessage: String = "\(error.domain)" + " \(String(error.code))" + ": " + "\(error.userInfo![NSLocalizedDescriptionKey]!)"
-        
-        
-        //Add RecoverySuggestion only if there actually is one
-        
-        if let suggestion = error.userInfo?[NSLocalizedRecoverySuggestionErrorKey] as? String{
-            
-            errorMessage += " \(suggestion)"
-        }
-        
-        return errorMessage
-    }
     
     @IBAction func proceedLogin(sender: UIButton) {
         
         //proceed the standard login to udacity
         
-        self.startActivityIndicator()
+        self.startActivityIndicator()        
         
         self.session = UdacityStandardLogin(username: self.emailField.text, password: self.passwordField.text)
         self.session!.POSTSessionRequest { (success, error) -> Void in
@@ -152,7 +141,7 @@ class LoginViewController: UIViewController, LoginFeedbackDelegate {
                 self.session = UdacityFacebookAuth(accessToken: accessToken)
                 self.session!.POSTSessionRequest({ (success, error) -> Void in
             
-                    self.activityIndicator!.stop()
+                    self.activityIndicatorVC!.stopSpinner()
                     self.handleLoginResponse(success, error: error)
                     
                 })
@@ -160,7 +149,7 @@ class LoginViewController: UIViewController, LoginFeedbackDelegate {
             
             else{
                 
-                self.activityIndicator!.stop()
+                self.activityIndicatorVC!.stopSpinner()
                 self.handleLoginResponse(false, error: FBerror)
             
             }
@@ -170,7 +159,7 @@ class LoginViewController: UIViewController, LoginFeedbackDelegate {
     func didActivateRetryAction() {
         //delegate method that is called when retry is tapped
         
-        self.activityIndicator!.removeFromSuperview()
+        self.activityIndicatorVC!.removeStatusView()
         
         self.startActivityIndicator()
         self.session!.POSTSessionRequest { (success, error) -> Void in

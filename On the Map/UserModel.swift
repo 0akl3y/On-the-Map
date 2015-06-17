@@ -16,6 +16,7 @@ class UserModel {
     
     
     init(userKey:String, session:UdacityClient){
+        
         self.uniqueKey = userKey
         self.getUserDataFromSession(session)
     }
