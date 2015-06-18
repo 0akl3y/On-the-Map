@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F0019551B336DE600A47A69 /* PostPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0019541B336DE600A47A69 /* PostPlaceViewController.swift */; };
 		8F07975E1B0BCF440086BF5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F07975D1B0BCF440086BF5A /* AppDelegate.swift */; };
 		8F0797601B0BCF440086BF5A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F07975F1B0BCF440086BF5A /* LoginViewController.swift */; };
 		8F0797631B0BCF440086BF5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F0797611B0BCF440086BF5A /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8F0019541B336DE600A47A69 /* PostPlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostPlaceViewController.swift; sourceTree = "<group>"; };
 		8F0797581B0BCF440086BF5A /* On the Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On the Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F07975C1B0BCF440086BF5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F07975D1B0BCF440086BF5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				8F07975F1B0BCF440086BF5A /* LoginViewController.swift */,
 				8FDEEBD71B2951CF0065E72C /* ListViewController.swift */,
 				8F8ADB081B0BD15700B5063B /* MapViewController.swift */,
+				8F0019541B336DE600A47A69 /* PostPlaceViewController.swift */,
 				8FF1A2381B328A490088F5F9 /* AbstractViewController.swift */,
 				8FF231B41B32200A000C5E53 /* ViewController.swift */,
 				8F0797641B0BCF440086BF5A /* Images.xcassets */,
@@ -290,6 +293,7 @@
 				8FE00DE71B29EECC000C25CB /* CachedResponses.swift in Sources */,
 				8FE581C01B1BA1BA00021555 /* ErrorDialog.swift in Sources */,
 				8FF199E81B0E66FC00C5032F /* UdacityStandardLogin.swift in Sources */,
+				8F0019551B336DE600A47A69 /* PostPlaceViewController.swift in Sources */,
 				8FDEEBD81B2951CF0065E72C /* ListViewController.swift in Sources */,
 				8FE45F691B2F67D9002A05C8 /* StatusViewController.swift in Sources */,
 				8F8ADB091B0BD15700B5063B /* MapViewController.swift in Sources */,

@@ -185,7 +185,12 @@ class MapViewController: AbstractViewController, MKMapViewDelegate, StatusViewDe
     
     }    
     
-    func addLocations(sender:UIBarButtonItem){}
+    func addLocations(sender:UIBarButtonItem){
+        
+        self.performSegueWithIdentifier("mapToSearch", sender: self)
+    
+    
+    }
     
     func reloadLocation(sender:UIBarButtonItem){
         

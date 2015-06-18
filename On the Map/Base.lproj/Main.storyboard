@@ -193,13 +193,13 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DjI-IF-QgR">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jBd-uV-m8w">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="pin" id="eea-ZY-w4w">
@@ -222,6 +222,7 @@
                     <navigationItem key="navigationItem" id="LP0-iR-HgU"/>
                     <connections>
                         <outlet property="listView" destination="aH2-uO-lQr" id="or5-fc-cVC"/>
+                        <segue destination="1v7-vo-P6m" kind="modal" identifier="listToSearch" id="TMa-N3-uXl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vZS-zI-cC3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -272,11 +273,109 @@
                     <navigationItem key="navigationItem" id="Lbh-hp-9iQ"/>
                     <connections>
                         <outlet property="mapView" destination="cce-kq-BXv" id="lfz-Lp-Hq5"/>
+                        <segue destination="1v7-vo-P6m" kind="modal" identifier="mapToSearch" id="PWH-9z-52F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZF5-wE-Hbt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2493" y="-61"/>
+        </scene>
+        <!--Post Place View Controller-->
+        <scene sceneID="XUY-fx-GMV">
+            <objects>
+                <viewController id="1v7-vo-P6m" customClass="PostPlaceViewController" customModule="On_the_Map" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="grM-Tn-6bS"/>
+                        <viewControllerLayoutGuide type="bottom" id="4Yv-ON-Zb6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ntn-vg-8br">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TSF-9I-ve1">
+                                <rect key="frame" x="0.0" y="209" width="320" height="149"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="149" id="Kxs-CI-nBC"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBZ-sw-RbO">
+                                <rect key="frame" x="59" y="104" width="203" height="97"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="97" id="Zyh-XU-ivv"/>
+                                    <constraint firstAttribute="width" constant="203" id="yDn-0z-Ply"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="Where are you ">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="17" name="Roboto-Thin"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="studying">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="20" name="Roboto-Medium"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=" today?">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="17" name="Roboto-Thin"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oZr-dz-f5B">
+                                <rect key="frame" x="63" y="366" width="195" height="22"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration" label=""/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="195" id="WFX-wd-XNU"/>
+                                    <constraint firstAttribute="height" constant="22" id="XzQ-hd-GSu"/>
+                                </constraints>
+                                <state key="normal" title="Find on the Map"/>
+                                <connections>
+                                    <action selector="findPlace:" destination="1v7-vo-P6m" eventType="touchUpInside" id="E3A-Lq-dkS"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nzs-Bo-qGl">
+                                <rect key="frame" x="10" y="269" width="300" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="kXO-h9-WcF"/>
+                                    <constraint firstAttribute="height" constant="30" id="rqE-GW-Kgx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.88388723544973546" green="0.88388723544973546" blue="0.88388723544973546" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="oZr-dz-f5B" firstAttribute="top" secondItem="TSF-9I-ve1" secondAttribute="bottom" constant="8" id="1tu-aC-Ia8"/>
+                            <constraint firstAttribute="centerX" secondItem="cBZ-sw-RbO" secondAttribute="centerX" id="9qU-O2-aCU"/>
+                            <constraint firstAttribute="centerX" secondItem="nzs-Bo-qGl" secondAttribute="centerX" id="KBE-Fd-DFW"/>
+                            <constraint firstItem="TSF-9I-ve1" firstAttribute="width" secondItem="ntn-vg-8br" secondAttribute="width" id="RUT-Jy-b2w"/>
+                            <constraint firstItem="TSF-9I-ve1" firstAttribute="top" secondItem="cBZ-sw-RbO" secondAttribute="bottom" constant="8" id="TXb-0b-Mw2"/>
+                            <constraint firstAttribute="centerX" secondItem="TSF-9I-ve1" secondAttribute="centerX" id="VvE-AJ-oEh"/>
+                            <constraint firstAttribute="centerY" secondItem="TSF-9I-ve1" secondAttribute="centerY" id="e9J-d5-Aak"/>
+                            <constraint firstAttribute="centerX" secondItem="oZr-dz-f5B" secondAttribute="centerX" id="pAE-QM-PD0"/>
+                            <constraint firstAttribute="centerY" secondItem="nzs-Bo-qGl" secondAttribute="centerY" id="un8-dW-sIU"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="TLC-az-1gK"/>
+                    <connections>
+                        <outlet property="findPlaceButton" destination="oZr-dz-f5B" id="7Hu-y9-TOo"/>
+                        <outlet property="placeNameInputField" destination="nzs-Bo-qGl" id="XeY-QS-9p5"/>
+                        <outlet property="questionLabel" destination="cBZ-sw-RbO" id="K7T-el-dS0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oMe-YZ-IIl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3021" y="259"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="1WI-YS-IiN">
@@ -327,4 +426,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="TMa-N3-uXl"/>
+    </inferredMetricsTieBreakers>
 </document>
