@@ -28,6 +28,7 @@
 		8FF199EA1B0E754000C5032F /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF199E91B0E754000C5032F /* FBSDKCoreKit.framework */; };
 		8FF199EC1B0E760F00C5032F /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF199EB1B0E760F00C5032F /* FBSDKLoginKit.framework */; };
 		8FF199EF1B0E79BF00C5032F /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF199EE1B0E79BF00C5032F /* FBSDKShareKit.framework */; };
+		8FF1A2391B328A490088F5F9 /* AbstractViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF1A2381B328A490088F5F9 /* AbstractViewController.swift */; };
 		8FF231B51B32200A000C5E53 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF231B41B32200A000C5E53 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		8FF199EB1B0E760F00C5032F /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		8FF199ED1B0E763A00C5032F /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		8FF199EE1B0E79BF00C5032F /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
+		8FF1A2381B328A490088F5F9 /* AbstractViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractViewController.swift; sourceTree = "<group>"; };
 		8FF231B41B32200A000C5E53 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,6 +125,7 @@
 				8F07975F1B0BCF440086BF5A /* LoginViewController.swift */,
 				8FDEEBD71B2951CF0065E72C /* ListViewController.swift */,
 				8F8ADB081B0BD15700B5063B /* MapViewController.swift */,
+				8FF1A2381B328A490088F5F9 /* AbstractViewController.swift */,
 				8FF231B41B32200A000C5E53 /* ViewController.swift */,
 				8F0797641B0BCF440086BF5A /* Images.xcassets */,
 				8F0797661B0BCF440086BF5A /* LaunchScreen.xib */,
@@ -294,6 +297,7 @@
 				8F0797601B0BCF440086BF5A /* LoginViewController.swift in Sources */,
 				8F07975E1B0BCF440086BF5A /* AppDelegate.swift in Sources */,
 				8F8ADB041B0BCFEB00B5063B /* UdacityClient.swift in Sources */,
+				8FF1A2391B328A490088F5F9 /* AbstractViewController.swift in Sources */,
 				8F8ADB051B0BCFEB00B5063B /* SimpleNetworking.swift in Sources */,
 				8F37AA4E1B20DED900F249BD /* UserModel.swift in Sources */,
 			);

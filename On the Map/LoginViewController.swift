@@ -58,13 +58,12 @@ class LoginViewController: UIViewController, StatusViewDelegate {
     
     func startActivityIndicator(){
         
-        self.activityIndicatorVC = StatusViewController()
-
-        self.activityIndicatorVC!.delegate = self
+        self.activityIndicatorVC = StatusViewController()       
         self.addChildViewController(self.activityIndicatorVC!)
-        
         self.view.addSubview(self.activityIndicatorVC!.view)
         self.activityIndicatorVC!.didMoveToParentViewController(self)
+        
+        self.activityIndicatorVC!.delegate = self
 
         self.activityIndicatorVC!.startSpinner()
     
@@ -78,6 +77,7 @@ class LoginViewController: UIViewController, StatusViewDelegate {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
                 self.activityIndicatorVC!.stopSpinner()
+                self.activityIndicatorVC!.removeStatusView()
                 let key = self.session!.userKey
                 let userData = UserModel(userKey: key!, session: self.session!)
                 self.cache.userData = userData
@@ -107,7 +107,7 @@ class LoginViewController: UIViewController, StatusViewDelegate {
         
         //proceed the standard login to udacity
         
-        self.startActivityIndicator()        
+        self.startActivityIndicator()
         
         self.session = UdacityStandardLogin(username: self.emailField.text, password: self.passwordField.text)
         self.session!.POSTSessionRequest { (success, error) -> Void in
@@ -150,6 +150,7 @@ class LoginViewController: UIViewController, StatusViewDelegate {
             else{
                 
                 self.activityIndicatorVC!.stopSpinner()
+                self.activityIndicatorVC!.removeStatusView()
                 self.handleLoginResponse(false, error: FBerror)
             
             }

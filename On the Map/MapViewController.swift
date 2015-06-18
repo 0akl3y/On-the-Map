@@ -9,21 +9,18 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, MKMapViewDelegate, StatusViewDelegate {
+class MapViewController: AbstractViewController, MKMapViewDelegate, StatusViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     
     var locations:[AnyObject]?
-    var cache:CachedResponses {
-        get{ return CachedResponses.cachedResponses() }
-    }
+
     
     var logoutButton:UIBarButtonItem!
     var addLocationButton: UIBarButtonItem!
-    var reloadLocationsButton: UIBarButtonItem!
+    var reloadLocationsButton: UIBarButtonItem?
     
 
-    var errorMessageVC: StatusViewController?
     var annotationList = [MKPointAnnotation]()
     
     override func viewWillAppear(animated: Bool) {
@@ -37,7 +34,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, StatusViewDelegate
         self.reloadLocationsButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "reloadLocation:")
         
         self.navigationItem.leftBarButtonItem = self.logoutButton
-        self.navigationItem.rightBarButtonItems = [self.addLocationButton, self.reloadLocationsButton]
+        self.navigationItem.rightBarButtonItems = [self.addLocationButton, self.reloadLocationsButton!]
 
     }
     
@@ -45,9 +42,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, StatusViewDelegate
         super.viewDidLoad()
         
         self.mapView.delegate = self
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        
         
         // Take the data from cache if already there otherwise download them again
 
@@ -112,7 +106,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, StatusViewDelegate
             
             var buttonsEnabled = (!self.errorMessageVC!.view.isDescendantOfView(self.view))
 
-            self.reloadLocationsButton.enabled = buttonsEnabled
+            self.reloadLocationsButton!.enabled = buttonsEnabled
             self.addLocationButton.enabled = buttonsEnabled
             self.logoutButton.enabled = buttonsEnabled
 
@@ -121,6 +115,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, StatusViewDelegate
     
     func loadLocations(){
         
+        
         let parseClient = ParseClient()
         
         parseClient.GETStudentLocations { (error) -> Void in
@@ -128,6 +123,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, StatusViewDelegate
             if(error == nil){
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    
+                    self.stopReloadIndicator(self.reloadLocationsButton!)
                     
                     self.generateMapAnnotationsForMapView(self.mapView, studentLocations: self.cache.locations)
                     self.updateButtonStatus()
@@ -138,15 +135,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, StatusViewDelegate
             else{
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    
-                    self.errorMessageVC = StatusViewController()
+                                        
+                    self.stopReloadIndicator(self.reloadLocationsButton!)
+                    self.addStatusView()
+                    self.displayErrorMessage(error!)
                     self.errorMessageVC!.delegate = self
-                    self.errorMessageVC!.error = error
-                    self.addChildViewController(self.errorMessageVC!)
-                    
-                    self.view.addSubview(self.errorMessageVC!.view)
-                    self.errorMessageVC!.didMoveToParentViewController(self)
-                    self.errorMessageVC!.showLoginErrorMessage()
                     self.updateButtonStatus()
                 })
             }
@@ -188,12 +181,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, StatusViewDelegate
     
     func logout(sender:UIBarButtonItem){
         
-        let FBSession = FBSDKLoginManager()
-        FBSession.logOut()
-        FBSDKAccessToken.setCurrentAccessToken(nil)
-        
-        self.cache.userData = nil
-        self.dismissViewControllerAnimated(true, completion: nil)        
+        self.performLogout()
     
     }    
     
@@ -202,8 +190,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, StatusViewDelegate
     func reloadLocation(sender:UIBarButtonItem){
         
         self.cache.locations.removeAll(keepCapacity: false)
-        self.mapView.removeAnnotations(self.annotationList)
+        self.mapView.removeAnnotations(self.annotationList)        
         
+        self.startReloadIndicator(sender)
         self.loadLocations()
     }
     

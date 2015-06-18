@@ -116,7 +116,7 @@ class StatusViewController: UIViewController, ErrorDialogDelegate {
         
         UIView.animateWithDuration(0.4, animations: { () -> Void in
             
-            self.dialogWindow!.alpha = 0
+            self.dialogWindow?.alpha = 0
             self.view.alpha = 0
             
             }) { (Bool) -> Void in

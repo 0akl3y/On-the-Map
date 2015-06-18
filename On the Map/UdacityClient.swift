@@ -92,7 +92,7 @@ class UdacityClient: SimpleNetworking {
                 completion(result: nil, error: error)
             }
             
-            let newResult = result!.subdataWithRange(NSMakeRange(5, result!.length - 5))
+            let newResult = result?.subdataWithRange(NSMakeRange(5, result!.length - 5))
             completion(result:newResult, error: nil)
         
         }
