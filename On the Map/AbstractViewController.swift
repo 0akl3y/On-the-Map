@@ -24,13 +24,19 @@ class AbstractViewController: UIViewController {
     func addStatusView(){
         
         //add a status view that displays errorMessages and a large loading indicator
-        
-        self.errorMessageVC = StatusViewController()
 
-        self.addChildViewController(self.errorMessageVC!)
-        self.view.addSubview(self.errorMessageVC!.view)
-        self.errorMessageVC!.didMoveToParentViewController(self)
+        self.errorMessageVC = StatusViewController()
+        self.displayOverlay(self.errorMessageVC!)
         
+        
+    }
+    
+    func displayOverlay(overlay:UIViewController){
+        
+        self.addChildViewController(overlay)
+        self.view.addSubview(overlay.view)
+        overlay.didMoveToParentViewController(self)
+    
     }
     
     

@@ -26,8 +26,8 @@ struct StudentLocation {
     
     let firstName: String!
     let lastName: String!
-    let latitude: Float!
-    let longitude: Float!
+    let latitude: Double!
+    let longitude: Double!
     let mapString: String!
     let uniqueKey: String!
     
@@ -39,8 +39,9 @@ struct StudentLocation {
         
         self.firstName = placeAttributeDict[StudentLocationKey.firstNameKey.rawValue] as! String
         self.lastName = placeAttributeDict[StudentLocationKey.lastNameKey.rawValue] as! String
-        self.latitude = placeAttributeDict[StudentLocationKey.latitudeKey.rawValue] as! Float
-        self.longitude = placeAttributeDict[StudentLocationKey.longitudeKey.rawValue] as! Float
+        self.latitude = placeAttributeDict[StudentLocationKey.latitudeKey.rawValue] as! Double
+        self.longitude = placeAttributeDict[StudentLocationKey.longitudeKey.rawValue] as! Double
+        
         self.mapString = placeAttributeDict[StudentLocationKey.mapStringKey.rawValue] as! String
         self.uniqueKey = placeAttributeDict[StudentLocationKey.uniqueKeyKey.rawValue] as! String
         

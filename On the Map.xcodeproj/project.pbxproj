@@ -18,6 +18,7 @@
 		8F8ADB041B0BCFEB00B5063B /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8ADB011B0BCFEB00B5063B /* UdacityClient.swift */; };
 		8F8ADB051B0BCFEB00B5063B /* SimpleNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8ADB021B0BCFEB00B5063B /* SimpleNetworking.swift */; };
 		8F8ADB091B0BD15700B5063B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8ADB081B0BD15700B5063B /* MapViewController.swift */; };
+		8FDD87CA1B36CB490050A449 /* URLInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDD87C91B36CB490050A449 /* URLInputViewController.swift */; };
 		8FDEEBD81B2951CF0065E72C /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDEEBD71B2951CF0065E72C /* ListViewController.swift */; };
 		8FE00DE71B29EECC000C25CB /* CachedResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE00DE61B29EECC000C25CB /* CachedResponses.swift */; };
 		8FE45F691B2F67D9002A05C8 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE45F681B2F67D9002A05C8 /* StatusViewController.swift */; };
@@ -59,6 +60,7 @@
 		8F8ADB011B0BCFEB00B5063B /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		8F8ADB021B0BCFEB00B5063B /* SimpleNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleNetworking.swift; sourceTree = "<group>"; };
 		8F8ADB081B0BD15700B5063B /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		8FDD87C91B36CB490050A449 /* URLInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLInputViewController.swift; sourceTree = "<group>"; };
 		8FDEEBD71B2951CF0065E72C /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		8FE00DE61B29EECC000C25CB /* CachedResponses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedResponses.swift; sourceTree = "<group>"; };
 		8FE45F681B2F67D9002A05C8 /* StatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				8F0797611B0BCF440086BF5A /* Main.storyboard */,
+				8FDD87C91B36CB490050A449 /* URLInputViewController.swift */,
 				8F07975D1B0BCF440086BF5A /* AppDelegate.swift */,
 				8FE581BF1B1BA1BA00021555 /* ErrorDialog.swift */,
 				8FE45F681B2F67D9002A05C8 /* StatusViewController.swift */,
@@ -290,6 +293,7 @@
 				8FF231B51B32200A000C5E53 /* ViewController.swift in Sources */,
 				8FF199E61B0E65CC00C5032F /* UdacityFacebookAuth.swift in Sources */,
 				8FEA9D051B24F4B300059913 /* StudentLocation.swift in Sources */,
+				8FDD87CA1B36CB490050A449 /* URLInputViewController.swift in Sources */,
 				8FE00DE71B29EECC000C25CB /* CachedResponses.swift in Sources */,
 				8FE581C01B1BA1BA00021555 /* ErrorDialog.swift in Sources */,
 				8FF199E81B0E66FC00C5032F /* UdacityStandardLogin.swift in Sources */,

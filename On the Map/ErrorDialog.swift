@@ -86,10 +86,9 @@ class ErrorDialog: UIView
     
     func setErrorMessage(error:NSError){
         
-        
         //Build error Message String
         
-        var errorMessage: String = "\(error.domain)" + " \(String(error.code))" + ": " + "\(error.userInfo![NSLocalizedDescriptionKey]!)"
+        var errorMessage: String = "\(error.domain)" + " \(String(error.code))"
         
         //Add RecoverySuggestion only if there actually is one
         
@@ -97,7 +96,18 @@ class ErrorDialog: UIView
             
             errorMessage += " \(suggestion)"
         }
-
+        
+        // For kCLErrorMessages without value set for NSLocalizedDescriptionKey
+        
+        if(error.userInfo?[NSLocalizedDescriptionKey] == nil){
+            
+            errorMessage = "\(error.description)"
+        }
+        else{
+            
+            errorMessage += ": \(error.userInfo![NSLocalizedDescriptionKey]!)"
+        
+        }
         
         self.messageLabel.text = errorMessage
     

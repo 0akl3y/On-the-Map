@@ -8,7 +8,7 @@
 
 import UIKit
 
- //Create a singletion object to cache the network responses
+ //Create a singleton object to cache the network responses
 let _cachedResponses: CachedResponses = { CachedResponses() }()
 
 class CachedResponses: NSObject {
