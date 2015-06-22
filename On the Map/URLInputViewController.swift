@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class URLInputViewController: AbstractViewController,  StatusViewDelegate {
+class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMapViewDelegate {
 
     @IBOutlet weak var mapPreview: MKMapView!
     @IBOutlet weak var mapActiviyIndicator: UIActivityIndicatorView!
@@ -21,6 +21,7 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.mapPreview.delegate = self
 
     }
     
@@ -64,13 +65,10 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate {
                 self.mapActiviyIndicator.alpha = 0
                 self.mediaURL.alpha = 1.0
                 self.firstResult = placemarks[0] as? CLPlacemark
-                println(self.firstResult?.location)
                 
                 let newAnnotation = MKPointAnnotation()
                 newAnnotation.title = self.placeToSearch
                 newAnnotation.coordinate = self.firstResult!.location.coordinate
-                
-                
                 
                 self.mapPreview.addAnnotation(newAnnotation)
 
@@ -79,13 +77,16 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate {
         
         mapActiviyIndicator.startAnimating()
         
-        
     }
+    
+    
+    func mapView(mapView: MKMapView!, didAddAnnotationViews views: [AnyObject]!) {
 
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-
+        var viewPoint = CLLocationCoordinate2DMake(self.firstResult!.location.coordinate.latitude - 0.1, self.firstResult!.location.coordinate.longitude)
+        
+        var zoomedCamera = MKMapCamera(lookingAtCenterCoordinate: self.firstResult!.location.coordinate, fromEyeCoordinate:viewPoint, eyeAltitude: 50000.0 as CLLocationDistance)
+        
+        self.mapPreview.setCamera(zoomedCamera, animated: true)
     }
     
     
@@ -108,15 +109,21 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate {
     
     @IBAction func confirm(sender: UIButton) {
         
-        //Todo Validierung einbauen
 
         let newLocation = self.createStudentLocation(firstResult!.location, mediaURL: self.mediaURL.text)
         
         let parseClient = ParseClient()
         
         parseClient.POSTStudentLocations(newLocation, completion: { (result, error) -> Void in
-            println(error)
-            println(result)
+            
+            if(error != nil){
+                
+                self.displayErrorMessage(error!)
+                return
+            }
+            
+            self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+
         })
         
         

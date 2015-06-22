@@ -107,8 +107,7 @@ class LoginViewController: UIViewController, StatusViewDelegate {
         
         //proceed the standard login to udacity
         
-        self.startActivityIndicator()
-        
+        self.startActivityIndicator()        
         
         self.session = UdacityStandardLogin(username: self.emailField.text, password: self.passwordField.text)
         self.session!.POSTSessionRequest { (success, error) -> Void in
