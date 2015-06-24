@@ -21,8 +21,11 @@
 		8FDD87CA1B36CB490050A449 /* URLInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDD87C91B36CB490050A449 /* URLInputViewController.swift */; };
 		8FDEEBD81B2951CF0065E72C /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDEEBD71B2951CF0065E72C /* ListViewController.swift */; };
 		8FE00DE71B29EECC000C25CB /* CachedResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE00DE61B29EECC000C25CB /* CachedResponses.swift */; };
+		8FE435051B39F2560016D82E /* URLPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE435041B39F2560016D82E /* URLPreviewController.swift */; };
 		8FE45F691B2F67D9002A05C8 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE45F681B2F67D9002A05C8 /* StatusViewController.swift */; };
+		8FE490311B3B144B00528C47 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE490301B3B144B00528C47 /* DataViewController.swift */; };
 		8FE581C01B1BA1BA00021555 /* ErrorDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE581BF1B1BA1BA00021555 /* ErrorDialog.swift */; };
+		8FE651ED1B3B4B5700F0D6B6 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE651EC1B3B4B5700F0D6B6 /* CollectionViewController.swift */; };
 		8FEA9D031B24D15700059913 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEA9D021B24D15700059913 /* ParseClient.swift */; };
 		8FEA9D051B24F4B300059913 /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEA9D041B24F4B300059913 /* StudentLocation.swift */; };
 		8FF199E61B0E65CC00C5032F /* UdacityFacebookAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF199E51B0E65CC00C5032F /* UdacityFacebookAuth.swift */; };
@@ -63,8 +66,11 @@
 		8FDD87C91B36CB490050A449 /* URLInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLInputViewController.swift; sourceTree = "<group>"; };
 		8FDEEBD71B2951CF0065E72C /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		8FE00DE61B29EECC000C25CB /* CachedResponses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedResponses.swift; sourceTree = "<group>"; };
+		8FE435041B39F2560016D82E /* URLPreviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLPreviewController.swift; sourceTree = "<group>"; };
 		8FE45F681B2F67D9002A05C8 /* StatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
+		8FE490301B3B144B00528C47 /* DataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 		8FE581BF1B1BA1BA00021555 /* ErrorDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorDialog.swift; sourceTree = "<group>"; };
+		8FE651EC1B3B4B5700F0D6B6 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		8FEA9D021B24D15700059913 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 		8FEA9D041B24F4B300059913 /* StudentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
 		8FF199E51B0E65CC00C5032F /* UdacityFacebookAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityFacebookAuth.swift; sourceTree = "<group>"; };
@@ -123,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				8F0797611B0BCF440086BF5A /* Main.storyboard */,
+				8FE435041B39F2560016D82E /* URLPreviewController.swift */,
 				8FDD87C91B36CB490050A449 /* URLInputViewController.swift */,
 				8F07975D1B0BCF440086BF5A /* AppDelegate.swift */,
 				8FE581BF1B1BA1BA00021555 /* ErrorDialog.swift */,
@@ -130,7 +137,9 @@
 				8F07975F1B0BCF440086BF5A /* LoginViewController.swift */,
 				8FDEEBD71B2951CF0065E72C /* ListViewController.swift */,
 				8F8ADB081B0BD15700B5063B /* MapViewController.swift */,
+				8FE651EC1B3B4B5700F0D6B6 /* CollectionViewController.swift */,
 				8F0019541B336DE600A47A69 /* PostPlaceViewController.swift */,
+				8FE490301B3B144B00528C47 /* DataViewController.swift */,
 				8FF1A2381B328A490088F5F9 /* AbstractViewController.swift */,
 				8FF231B41B32200A000C5E53 /* ViewController.swift */,
 				8F0797641B0BCF440086BF5A /* Images.xcassets */,
@@ -302,10 +311,13 @@
 				8FE45F691B2F67D9002A05C8 /* StatusViewController.swift in Sources */,
 				8F8ADB091B0BD15700B5063B /* MapViewController.swift in Sources */,
 				8FEA9D031B24D15700059913 /* ParseClient.swift in Sources */,
+				8FE490311B3B144B00528C47 /* DataViewController.swift in Sources */,
 				8F0797601B0BCF440086BF5A /* LoginViewController.swift in Sources */,
 				8F07975E1B0BCF440086BF5A /* AppDelegate.swift in Sources */,
 				8F8ADB041B0BCFEB00B5063B /* UdacityClient.swift in Sources */,
 				8FF1A2391B328A490088F5F9 /* AbstractViewController.swift in Sources */,
+				8FE435051B39F2560016D82E /* URLPreviewController.swift in Sources */,
+				8FE651ED1B3B4B5700F0D6B6 /* CollectionViewController.swift in Sources */,
 				8F8ADB051B0BCFEB00B5063B /* SimpleNetworking.swift in Sources */,
 				8F37AA4E1B20DED900F249BD /* UserModel.swift in Sources */,
 			);

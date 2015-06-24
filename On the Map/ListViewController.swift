@@ -11,38 +11,57 @@ import UIKit
 
 
 
-class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ListViewController: DataViewController, UITableViewDelegate, UITableViewDataSource, StatusViewDelegate {
     
-
     @IBOutlet weak var listView: UITableView!
-
-    var cache:CachedResponses {
-        get{ return CachedResponses.cachedResponses() }
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.addButtons()
         
-        var parseClient = ParseClient()
+        
         if (self.cache.locations.count < 1){
             
-            parseClient.GETStudentLocations { (error) -> Void in
-                
-                if(error != nil){println(error)}
-            }
-        }        
+            self.loadLocations()
+
+        }
         
         listView.delegate = self
         listView.dataSource = self
-        // Do any additional setup after loading the view.
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
     }
     
+    func loadLocations(){
+        
+        var parseClient = ParseClient()
+        parseClient.GETStudentLocations { (error) -> Void in
+            
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                
+                self.stopReloadIndicator(self.reloadLocationsButton)
+                
+                if(error != nil){
+                    self.addStatusView()
+                    self.errorMessageVC!.delegate = self
+                    self.displayErrorMessage(error!)
+                    self.updateButtonStatus()
+                    return
+                }
+                
+                self.listView.reloadData()
+
+
+                
+            })
+        
+        }
+    }
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,5 +89,32 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         
     }
+    
+    
+    override func addLocation(sender: UIBarButtonItem) {
+        
+        self.performSegueWithIdentifier("listToSearch", sender: self)
+        
+    }
 
+    override func reloadLocation(sender: UIBarButtonItem) {
+        
+        self.cache.locations.removeAll(keepCapacity: false)
+        self.loadLocations()
+        self.startReloadIndicator(sender)
+        
+    }
+    
+    func didActivateRetryAction() {
+        
+    }
+    
+    func didCloseErrorDialog() {
+        
+        self.updateButtonStatus()
+        
+    }
+
+    
+    
 }

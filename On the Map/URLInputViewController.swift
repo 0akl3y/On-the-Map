@@ -9,14 +9,20 @@
 import UIKit
 import MapKit
 
-class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMapViewDelegate {
+class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMapViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var mapPreview: MKMapView!
     @IBOutlet weak var mapActiviyIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet weak var browseButton: UIButton!
+    
     var placeToSearch: String!
     var firstResult:CLPlacemark?
     
     @IBOutlet weak var mediaURL: UITextField!
+    
+    var previewURL: NSURL!
+
     
 
     override func viewDidLoad() {
@@ -26,17 +32,18 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMap
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.view.alpha = 0
         self.geocodePlacename(self.placeToSearch)
     }
     
     
     override func viewDidAppear(animated: Bool) {
+        
+        self.mediaURL.delegate = self
                         
-        UIView.animateWithDuration(1, animations: { () -> Void in
+        /* UIView.animateWithDuration(1, animations: { () -> Void in
             self.view.alpha = 1
             }) { (completed) -> Void in
-        }
+        }*/
     }
     
     
@@ -76,18 +83,20 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMap
         })
         
         mapActiviyIndicator.startAnimating()
+
         
     }
-    
-    
-    func mapView(mapView: MKMapView!, didAddAnnotationViews views: [AnyObject]!) {
 
+    
+    func mapViewDidFinishRenderingMap(mapView: MKMapView!, fullyRendered: Bool) {
         var viewPoint = CLLocationCoordinate2DMake(self.firstResult!.location.coordinate.latitude - 0.1, self.firstResult!.location.coordinate.longitude)
         
         var zoomedCamera = MKMapCamera(lookingAtCenterCoordinate: self.firstResult!.location.coordinate, fromEyeCoordinate:viewPoint, eyeAltitude: 50000.0 as CLLocationDistance)
         
         self.mapPreview.setCamera(zoomedCamera, animated: true)
     }
+
+    
     
     
     func createStudentLocation(userLocation: CLLocation, mediaURL: String) -> StudentLocation{
@@ -96,8 +105,8 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMap
             StudentLocationKey.mapStringKey.rawValue: self.placeToSearch,
             StudentLocationKey.uniqueKeyKey.rawValue: self.cache.userData!.uniqueKey!,
             StudentLocationKey.lastNameKey.rawValue : self.cache.userData!.lastName!,
-            StudentLocationKey.latitudeKey.rawValue: userLocation.coordinate.longitude as Double,
-            StudentLocationKey.longitudeKey.rawValue: userLocation.coordinate.latitude as Double,
+            StudentLocationKey.latitudeKey.rawValue: userLocation.coordinate.latitude as Double,
+            StudentLocationKey.longitudeKey.rawValue: userLocation.coordinate.longitude as Double,
             StudentLocationKey.mediaURLKey.rawValue: mediaURL ]
         
         
@@ -106,10 +115,8 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMap
         return userLocation
     }
     
-    
     @IBAction func confirm(sender: UIButton) {
         
-
         let newLocation = self.createStudentLocation(firstResult!.location, mediaURL: self.mediaURL.text)
         
         let parseClient = ParseClient()
@@ -125,9 +132,45 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMap
             self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
 
         })
-        
-        
     }
+    
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        
+        self.browseButton.alpha = 1.0
+
+    }
+    
+    
+    
+    @IBAction func browseLink(sender: UIButton) {
+        //open the current link in browser
+        
+        if let URL = self.validateURLString(self.mediaURL.text){
+            
+            
+            self.previewURL = URL
+            
+            //UIApplication.sharedApplication().openURL(signupURL)
+            self.performSegueWithIdentifier("URLPreview", sender: self)
+            
+            
+        }
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if(segue.identifier == "URLPreview"){
+            
+            var targetVC = segue.destinationViewController as! URLPreviewController
+            targetVC.previewURL = self.previewURL
+        
+        
+        }
+    }
+    
+
     
     
     func removeView(){
@@ -144,7 +187,7 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMap
         }
     }
     
-    
+
     
     func didActivateRetryAction() {
         

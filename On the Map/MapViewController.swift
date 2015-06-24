@@ -9,39 +9,29 @@
 import UIKit
 import MapKit
 
-class MapViewController: AbstractViewController, MKMapViewDelegate, StatusViewDelegate {
+class MapViewController: DataViewController, MKMapViewDelegate, StatusViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     
     var locations:[AnyObject]?
-
-    
-    var logoutButton:UIBarButtonItem!
-    var addLocationButton: UIBarButtonItem!
-    var reloadLocationsButton: UIBarButtonItem?
     
 
     var annotationList = [MKPointAnnotation]()
+    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
         // draw the buttons
 
-        
-        self.logoutButton = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.Plain, target: self, action: "logout:")
-        self.addLocationButton = UIBarButtonItem(image: UIImage(named: "pin"), style: UIBarButtonItemStyle.Plain, target: self, action: "addLocation:")
-        self.reloadLocationsButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "reloadLocation:")
-        
-        self.navigationItem.leftBarButtonItem = self.logoutButton
-        self.navigationItem.rightBarButtonItems = [self.addLocationButton, self.reloadLocationsButton!]
-
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.mapView.delegate = self
+        self.mapView.delegate = self        
+        
+        self.addButtons()
         
         // Take the data from cache if already there otherwise download them again
 
@@ -99,20 +89,8 @@ class MapViewController: AbstractViewController, MKMapViewDelegate, StatusViewDe
          mapView.addAnnotations(self.annotationList)
     }
     
-    func updateButtonStatus(){
-        //Disable the reloadButton when an error message is presented
-        
-        if(self.errorMessageVC != nil){
-            
-            var buttonsEnabled = (!self.errorMessageVC!.view.isDescendantOfView(self.view))
 
-            self.reloadLocationsButton!.enabled = buttonsEnabled
-            self.addLocationButton.enabled = buttonsEnabled
-            self.logoutButton.enabled = buttonsEnabled
 
-        }
-    }
-    
     func loadLocations(){
         
         
@@ -179,28 +157,26 @@ class MapViewController: AbstractViewController, MKMapViewDelegate, StatusViewDe
         }
     }
     
-    func logout(sender:UIBarButtonItem){
-        
-        self.performLogout()
+
     
-    }    
-    
-    func addLocation(sender:UIBarButtonItem){
+    override func addLocation(sender:UIBarButtonItem){
         
         self.performSegueWithIdentifier("mapToSearch", sender: self)
     
     
     }
     
-    func reloadLocation(sender:UIBarButtonItem){
+    override func reloadLocation(sender:UIBarButtonItem){
         
         self.cache.locations.removeAll(keepCapacity: false)
         self.mapView.removeAnnotations(self.annotationList)        
         
         self.startReloadIndicator(sender)
         self.loadLocations()
+
     }
     
+
     func didActivateRetryAction() {
         self.loadLocations()
     }
@@ -208,6 +184,7 @@ class MapViewController: AbstractViewController, MKMapViewDelegate, StatusViewDe
     func didCloseErrorDialog() {
         self.updateButtonStatus()
     }
+
     
    
 }

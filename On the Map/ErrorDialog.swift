@@ -29,6 +29,7 @@ class ErrorDialog: UIView
     var closeButton:UIButton!
     var retryButton:UIButton?
     
+    
     let buttonSize: CGSize = CGSizeMake(50.0, 16.0)
 
     init(){

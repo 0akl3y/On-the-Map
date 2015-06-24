@@ -42,8 +42,8 @@ class AbstractViewController: UIViewController {
     
     func displayErrorMessage(error:NSError){
 
-        self.errorMessageVC!.error = error
-        self.errorMessageVC!.showLoginErrorMessage()    
+        self.errorMessageVC?.error = error
+        self.errorMessageVC?.showLoginErrorMessage()
     
     }
     
@@ -81,6 +81,9 @@ class AbstractViewController: UIViewController {
     }
     
     
+
+    
+    
     func performLogout(){
         
         let FBSession = FBSDKLoginManager()
@@ -90,6 +93,35 @@ class AbstractViewController: UIViewController {
         self.cache.userData = nil
         self.dismissViewControllerAnimated(true, completion: nil)
     
+    }
+    
+    func validateURLString(URLString: String) -> NSURL?{
+        
+        var validationError: NSError?
+        
+        let pattern = "(https?|ftp)://(-\\.)?([^\\s/?\\.#-]+\\.?)+(/[^\\s]*)?$"
+        let regex = NSRegularExpression(pattern: pattern, options: NSRegularExpressionOptions.CaseInsensitive, error: &validationError)
+        
+        let matches = regex!.matchesInString(URLString, options: NSMatchingOptions.allZeros, range: NSMakeRange(0, count(URLString)))
+        
+        if (matches.count > 0){
+            
+            return NSURL(string: URLString)!
+        
+        }
+        
+        let errorDescription = "The URL is not valid"
+        let errorInfo = [NSLocalizedDescriptionKey: errorDescription]
+        
+        
+        let errorMessage = NSError(domain: "invalidURLError", code: 99, userInfo: errorInfo)
+        
+        self.addStatusView()
+        self.displayErrorMessage(errorMessage)
+        
+        
+        return nil
+        
     }
 
     

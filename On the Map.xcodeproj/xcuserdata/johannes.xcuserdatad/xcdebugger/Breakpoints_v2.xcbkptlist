@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "On the Map/ErrorDialog.swift"
-            timestampString = "456572976.607848"
+            timestampString = "456781978.632768"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "setErrorMessage(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -129,6 +129,180 @@
             endingLineNumber = "57"
             landmarkName = "POSTStudentLocations(_:completion:)"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "On the Map/PostPlaceViewController.swift"
+            timestampString = "456818430.402725"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "PostPlaceViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "On_the_Map.PostPlaceViewController.findPlaceButton.getter : weak Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UIButton&gt;"
+                  moduleName = "On the Map"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/johannes/Developer/On%20the%20Map/On%20the%20Map/PostPlaceViewController.swift"
+                  timestampString = "456879687.66192"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "On_the_Map.PostPlaceViewController.findPlaceButton.setter : weak Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UIButton&gt;"
+                  moduleName = "On the Map"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/johannes/Developer/On%20the%20Map/On%20the%20Map/PostPlaceViewController.swift"
+                  timestampString = "456879687.662186"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "On_the_Map.PostPlaceViewController.init (On_the_Map.PostPlaceViewController.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;ObjectiveC.NSBundle&gt;) -&gt; On_the_Map.PostPlaceViewController"
+                  moduleName = "On the Map"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/johannes/Developer/On%20the%20Map/On%20the%20Map/PostPlaceViewController.swift"
+                  timestampString = "456879687.662528"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "185">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "On_the_Map.PostPlaceViewController.init (On_the_Map.PostPlaceViewController.Type)(coder : ObjectiveC.NSCoder) -&gt; On_the_Map.PostPlaceViewController"
+                  moduleName = "On the Map"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/johannes/Developer/On%20the%20Map/On%20the%20Map/PostPlaceViewController.swift"
+                  timestampString = "456879687.662692"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "138">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "On the Map/PostPlaceViewController.swift"
+            timestampString = "456818440.851643"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "findPlace(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "On the Map/CollectionViewController.swift"
+            timestampString = "456872344.274811"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "CollectionViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "On the Map/ListViewController.swift"
+            timestampString = "456879236.074145"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "loadLocations()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "On the Map/ListViewController.swift"
+            timestampString = "456879318.530937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "loadLocations()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "On_the_Map.ListViewController.(loadLocations (On_the_Map.ListViewController) -&gt; () -&gt; ()).(closure #1)"
+                  moduleName = "On the Map"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/johannes/Developer/On%20the%20Map/On%20the%20Map/ListViewController.swift"
+                  timestampString = "456879687.667724"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "322">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "On_the_Map.ListViewController.(loadLocations (On_the_Map.ListViewController) -&gt; () -&gt; ()).(closure #1).(closure #1)"
+                  moduleName = "On the Map"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/johannes/Developer/On%20the%20Map/On%20the%20Map/ListViewController.swift"
+                  timestampString = "456879687.668008"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "868">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
