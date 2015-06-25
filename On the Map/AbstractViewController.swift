@@ -68,7 +68,6 @@ class AbstractViewController: UIViewController {
             self.reloadIndicator.startAnimating()
         
         }
-    
     }
     
     func stopReloadIndicator(forButton:UIBarButtonItem?){
@@ -81,10 +80,19 @@ class AbstractViewController: UIViewController {
     }
     
     
-
-    
-    
     func performLogout(){
+        
+        
+        UdacityClient.logoutOfUdacity { (success, error) -> Void in
+            println(success)
+            
+            if(error != nil){
+                
+                self.addStatusView()                
+                self.displayErrorMessage(error!)
+            
+            }
+        }
         
         let FBSession = FBSDKLoginManager()
         FBSession.logOut()

@@ -26,6 +26,48 @@ class UdacityClient: SimpleNetworking {
     
     }
     
+    
+    func logoutOfUdacity(completion:(success: Bool, error: NSError?) -> Void){
+        
+        
+        //Check for exisiting cookie
+        
+        var xsfrCookie: NSHTTPCookie?
+        var headerFields: [String: String]?
+        
+        let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        
+        for cookie in sharedCookieStorage.cookies as! [NSHTTPCookie]{
+            
+            xsfrCookie = cookie.name == "XSRF-TOKEN" ? cookie : nil
+        
+        }
+        
+        if let udacityCookie = xsfrCookie {
+            
+            headerFields = ["X-XSRF-Token" : udacityCookie.value!]
+        
+        }
+        
+        self.sendJSONRequest(self.sessionURL, method: "Delete", additionalHeaderValues: headerFields, bodyData: nil) { (result, error) -> Void in
+            
+            if(error != nil){
+                
+                completion(success: false, error: error)
+                return
+            }
+            
+            let newResult = result!.subdataWithRange(NSMakeRange(5, result!.length - 5))
+            let parsedResult: AnyObject! = NSJSONSerialization.JSONObjectWithData(newResult, options: NSJSONReadingOptions.AllowFragments, error: nil)
+            
+            println(parsedResult)
+            
+            completion(success: true, error: nil)
+            
+        }
+        
+    }
+    
     func POSTSessionRequest(completion:(success: Bool, error: NSError?) -> Void) -> Void{
     
         
