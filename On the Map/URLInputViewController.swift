@@ -23,8 +23,6 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMap
     
     var previewURL: NSURL!
 
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mapPreview.delegate = self
@@ -32,18 +30,57 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMap
     }
     
     override func viewWillAppear(animated: Bool) {
+        self.mapPreview.alpha = 0
         self.geocodePlacename(self.placeToSearch)
+        
     }
     
     
     override func viewDidAppear(animated: Bool) {
         
         self.mediaURL.delegate = self
-                        
-        /* UIView.animateWithDuration(1, animations: { () -> Void in
-            self.view.alpha = 1
-            }) { (completed) -> Void in
-        }*/
+    }
+    
+    
+    func mapFadeInLoopStart(){
+        
+       UIView.animateKeyframesWithDuration(3.5, delay: 0, options: UIViewKeyframeAnimationOptions.Autoreverse | UIViewKeyframeAnimationOptions.Repeat, animations: { () -> Void in
+        
+            self.mapPreview.alpha = 0.7
+        
+            /*
+            UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 1.5) { () -> Void in
+                self.mapPreview.alpha = 0.8
+                
+            }
+            
+            UIView.addKeyframeWithRelativeStartTime(1.5, relativeDuration: 1.5) { () -> Void in
+                self.mapPreview.alpha = 0
+                
+            }
+            */
+                
+        
+        }) { (completion) -> Void in
+                self.mapPreview.alpha = 1
+
+            
+        }
+
+    
+    }
+    
+    
+    
+
+    
+    
+    func mapFadeInLoopStop(){
+        
+        UIView.animateWithDuration(1, delay: 0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
+            self.mapPreview.alpha = 1
+        }, completion: nil)
+    
     }
     
     
@@ -53,6 +90,8 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMap
         
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(placeName, completionHandler: { (placemarks, error) -> Void in
+            
+            self.mapFadeInLoopStop()
             
             if(error != nil){
                 
@@ -76,6 +115,7 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMap
                 let newAnnotation = MKPointAnnotation()
                 newAnnotation.title = self.placeToSearch
                 newAnnotation.coordinate = self.firstResult!.location.coordinate
+                self.mapPreview.setCenterCoordinate(self.firstResult!.location.coordinate, animated:false)
                 
                 self.mapPreview.addAnnotation(newAnnotation)
 
@@ -83,18 +123,26 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMap
         })
         
         mapActiviyIndicator.startAnimating()
+        self.mapFadeInLoopStart()
 
         
     }
-
     
-    func mapViewDidFinishRenderingMap(mapView: MKMapView!, fullyRendered: Bool) {
+
+    func mapView(mapView: MKMapView!, didAddAnnotationViews views: [AnyObject]!) {
+        
         var viewPoint = CLLocationCoordinate2DMake(self.firstResult!.location.coordinate.latitude - 0.1, self.firstResult!.location.coordinate.longitude)
         
         var zoomedCamera = MKMapCamera(lookingAtCenterCoordinate: self.firstResult!.location.coordinate, fromEyeCoordinate:viewPoint, eyeAltitude: 50000.0 as CLLocationDistance)
         
+        //When initial distance is too close map gets stuck when too far away
+        
+
+
         self.mapPreview.setCamera(zoomedCamera, animated: true)
     }
+    
+    
 
     
     

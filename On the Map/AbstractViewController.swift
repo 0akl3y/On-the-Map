@@ -82,15 +82,13 @@ class AbstractViewController: UIViewController {
     
     func performLogout(){
         
-        
-        UdacityClient.logoutOfUdacity { (success, error) -> Void in
+        self.cache.session!.logoutOfUdacity { (success, error) -> Void in
             println(success)
             
             if(error != nil){
                 
                 self.addStatusView()                
-                self.displayErrorMessage(error!)
-            
+                self.displayErrorMessage(error!)            
             }
         }
         

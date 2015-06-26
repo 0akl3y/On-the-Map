@@ -15,6 +15,7 @@ class UserModel {
     var lastName:String?
     
     
+    
     init(userKey:String, session:UdacityClient){
         
         self.uniqueKey = userKey

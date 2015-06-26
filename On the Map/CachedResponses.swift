@@ -15,6 +15,7 @@ class CachedResponses: NSObject {
     
     var locations = [StudentLocation]()
     var userData: UserModel?
+    var session: UdacityClient?
     
     class func cachedResponses() -> CachedResponses {
     

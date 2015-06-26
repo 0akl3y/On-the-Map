@@ -30,6 +30,7 @@ class UdacityClient: SimpleNetworking {
     func logoutOfUdacity(completion:(success: Bool, error: NSError?) -> Void){
         
         
+        
         //Check for exisiting cookie
         
         var xsfrCookie: NSHTTPCookie?
@@ -37,16 +38,18 @@ class UdacityClient: SimpleNetworking {
         
         let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
         
-        for cookie in sharedCookieStorage.cookies as! [NSHTTPCookie]{
+        for cookie in sharedCookieStorage.cookies as! [NSHTTPCookie]{         
             
-            xsfrCookie = cookie.name == "XSRF-TOKEN" ? cookie : nil
+            if(cookie.name == "XSRF-TOKEN"){
+                
+                xsfrCookie = cookie
+            }
         
         }
         
         if let udacityCookie = xsfrCookie {
             
             headerFields = ["X-XSRF-Token" : udacityCookie.value!]
-        
         }
         
         self.sendJSONRequest(self.sessionURL, method: "Delete", additionalHeaderValues: headerFields, bodyData: nil) { (result, error) -> Void in

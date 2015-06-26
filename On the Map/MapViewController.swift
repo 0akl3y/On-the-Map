@@ -14,6 +14,7 @@ class MapViewController: DataViewController, MKMapViewDelegate, StatusViewDelega
     @IBOutlet weak var mapView: MKMapView!
     
     var locations:[AnyObject]?
+
     
 
     var annotationList = [MKPointAnnotation]()
