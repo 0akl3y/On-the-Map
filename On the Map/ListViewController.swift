@@ -55,8 +55,6 @@ class ListViewController: DataViewController, UITableViewDelegate, UITableViewDa
                 }
                 
                 self.listView.reloadData()
-
-
                 
             })
         
@@ -85,9 +83,15 @@ class ListViewController: DataViewController, UITableViewDelegate, UITableViewDa
         
     }
     
-
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        var mediaLink = self.cache.locations[indexPath.row].mediaURL
+        
+            if let link = self.validateURLString(mediaLink!){
+                
+                let app = UIApplication.sharedApplication()
+                app.openURL(link)
+            }
     }
     
     

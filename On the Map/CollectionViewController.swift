@@ -46,13 +46,11 @@ class CollectionViewController: DataViewController, UICollectionViewDataSource, 
                 
                 self.collectionView.reloadData()
                 self.collectionView.setNeedsDisplay()
-
                 
             })
             
         }
     }
-    
     
     override func reloadLocation(sender: UIBarButtonItem) {
         
@@ -102,30 +100,17 @@ class CollectionViewController: DataViewController, UICollectionViewDataSource, 
         URLLabel.text = "\(mediaURL)"
         
         
-        /*
-        let horizontalMiddle = CGFloat(cell!.contentView.frame.width / 2)
-        let vertMiddle = CGFloat(cell!.contentView.frame.height / 2)
-        
-        cell!.contentView.frame = cell!.frame
-        
-
-        let nameLabel = UILabel(frame: CGRectMake(5, 5, cell!.contentView.frame.width, cell!.contentView.frame.height / 3))
-        
-        let mediaLabel = UILabel(frame: CGRectMake(1, nameLabel.frame.height + 1, cell!.contentView.frame.width, cell!.contentView.frame.height / 3))
-        
-        nameLabel.text = "\(firstName) \(lastName)"
-        mediaLabel.text = "\(mediaURL)"
-        
-        cell!.contentView.addSubview(nameLabel)
-        cell!.contentView.addSubview(mediaLabel)
-        */
-        
         return cell!
         
     }
     
-    
-    
+    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
 
-    
+        var mediaLink = self.cache.locations[indexPath.row].mediaURL
+        if let link = self.validateURLString(mediaLink!){
+            
+            let app = UIApplication.sharedApplication()
+            app.openURL(link)
+        }
+    }
 }

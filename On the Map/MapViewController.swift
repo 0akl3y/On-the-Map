@@ -148,23 +148,23 @@ class MapViewController: DataViewController, MKMapViewDelegate, StatusViewDelega
         return pinView
         
     }
-
     
     func mapView(mapView: MKMapView!, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
         if control == annotationView.rightCalloutAccessoryView {
-            let app = UIApplication.sharedApplication()
-            app.openURL(NSURL(string: annotationView.annotation.subtitle!)!)
+            
+            if let URLString = self.validateURLString(annotationView.annotation.subtitle!){
+                
+                let app = UIApplication.sharedApplication()
+                app.openURL(URLString)
+            
+            }
         }
     }
-    
-
     
     override func addLocation(sender:UIBarButtonItem){
         
         self.performSegueWithIdentifier("mapToSearch", sender: self)
-    
-    
     }
     
     override func reloadLocation(sender:UIBarButtonItem){
@@ -176,7 +176,6 @@ class MapViewController: DataViewController, MKMapViewDelegate, StatusViewDelega
         self.loadLocations()
 
     }
-    
 
     func didActivateRetryAction() {
         self.loadLocations()
@@ -185,7 +184,5 @@ class MapViewController: DataViewController, MKMapViewDelegate, StatusViewDelega
     func didCloseErrorDialog() {
         self.updateButtonStatus()
     }
-
-    
    
 }
