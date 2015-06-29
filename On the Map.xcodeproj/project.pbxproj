@@ -34,7 +34,6 @@
 		8FF199EC1B0E760F00C5032F /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF199EB1B0E760F00C5032F /* FBSDKLoginKit.framework */; };
 		8FF199EF1B0E79BF00C5032F /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF199EE1B0E79BF00C5032F /* FBSDKShareKit.framework */; };
 		8FF1A2391B328A490088F5F9 /* AbstractViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF1A2381B328A490088F5F9 /* AbstractViewController.swift */; };
-		8FF231B51B32200A000C5E53 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF231B41B32200A000C5E53 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,7 +79,6 @@
 		8FF199ED1B0E763A00C5032F /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		8FF199EE1B0E79BF00C5032F /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		8FF1A2381B328A490088F5F9 /* AbstractViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractViewController.swift; sourceTree = "<group>"; };
-		8FF231B41B32200A000C5E53 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +139,6 @@
 				8F0019541B336DE600A47A69 /* PostPlaceViewController.swift */,
 				8FE490301B3B144B00528C47 /* DataViewController.swift */,
 				8FF1A2381B328A490088F5F9 /* AbstractViewController.swift */,
-				8FF231B41B32200A000C5E53 /* ViewController.swift */,
 				8F0797641B0BCF440086BF5A /* Images.xcassets */,
 				8F0797661B0BCF440086BF5A /* LaunchScreen.xib */,
 				8F8ADB0A1B0BD1B300B5063B /* Model */,
@@ -299,7 +296,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8FF231B51B32200A000C5E53 /* ViewController.swift in Sources */,
 				8FF199E61B0E65CC00C5032F /* UdacityFacebookAuth.swift in Sources */,
 				8FEA9D051B24F4B300059913 /* StudentLocation.swift in Sources */,
 				8FDD87CA1B36CB490050A449 /* URLInputViewController.swift in Sources */,

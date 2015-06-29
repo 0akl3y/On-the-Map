@@ -16,9 +16,7 @@ class SimpleNetworking: NSObject {
             
             return NSURLSession.sharedSession()
         }
-        
     }
-    
     
     func escapeToURL(targetURL: String, methodCall: [String: AnyObject]?) -> String{
         
@@ -56,8 +54,7 @@ class SimpleNetworking: NSObject {
                 
                 request.addValue(value , forHTTPHeaderField: key)
             
-            }
-        
+            }        
         }
         
         var JSONError: NSError? = nil

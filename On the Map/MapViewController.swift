@@ -14,11 +14,7 @@ class MapViewController: DataViewController, MKMapViewDelegate, StatusViewDelega
     @IBOutlet weak var mapView: MKMapView!
     
     var locations:[AnyObject]?
-
-    
-
     var annotationList = [MKPointAnnotation]()
-    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
@@ -48,11 +44,6 @@ class MapViewController: DataViewController, MKMapViewDelegate, StatusViewDelega
             self.generateMapAnnotationsForMapView(self.mapView, studentLocations: self.cache.locations)
 
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func generateMapAnnotation(studentLocation:StudentLocation) -> MKPointAnnotation {
@@ -90,67 +81,31 @@ class MapViewController: DataViewController, MKMapViewDelegate, StatusViewDelega
          mapView.addAnnotations(self.annotationList)
     }
     
-
-
     func loadLocations(){
         
+        // load the locations
         
         let parseClient = ParseClient()
-        
-        /*parseClient.GETStudentLocations { (error) -> Void in
-            
-            if(error == nil){
+        parseClient.batchLoadLocations({ () -> Void in
+
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    
-                    self.stopReloadIndicator(self.reloadLocationsButton!)
-                    
-                    self.generateMapAnnotationsForMapView(self.mapView, studentLocations: self.cache.locations)
-                    self.updateButtonStatus()
-                })                
-            
-            }
-            
-            else{
+                self.stopReloadIndicator(self.reloadLocationsButton!)
                 
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                        
-                    self.stopReloadIndicator(self.reloadLocationsButton!)
-                    self.addStatusView()
-                    self.displayErrorMessage(error!)
-                    self.errorMessageVC!.delegate = self
-                    self.updateButtonStatus()
-                })
-            }
-            
-        }*/
-        
-        parseClient.queryStudentLocation(nil, options: ["limit": "200"]) { (error) -> Void in
-            
-            if(error == nil){
+                self.generateMapAnnotationsForMapView(self.mapView, studentLocations: self.cache.locations)
+                self.updateButtonStatus()
                 
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    
-                    self.stopReloadIndicator(self.reloadLocationsButton!)
-                    
-                    self.generateMapAnnotationsForMapView(self.mapView, studentLocations: self.cache.locations)
-                    self.updateButtonStatus()
-                })
+            })
+        }, failure: { (error) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
-            }
-                
-            else{
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    
-                    self.stopReloadIndicator(self.reloadLocationsButton!)
-                    self.addStatusView()
-                    self.displayErrorMessage(error!)
-                    self.errorMessageVC!.delegate = self
-                    self.updateButtonStatus()
-                })
-            }
-        }
+                self.stopReloadIndicator(self.reloadLocationsButton!)
+                self.addStatusView()
+                self.displayErrorMessage(error)
+                self.errorMessageVC!.delegate = self
+                self.updateButtonStatus()
+            })
+        })
         
     }
     

@@ -122,4 +122,44 @@ class ParseClient: SimpleNetworking {
             completion(result: resultDict, error: error)
         }
     }
+    
+    /* fetch more than 200 results in a "network conscious" way -----------------------------------------------------*/
+    
+
+    func batchLoadLocations(step:() -> Void, failure:(error:NSError) -> Void){
+        
+        // step takes a function to render the results at each succesfull step
+        // failure is called, when a step fails
+        
+        
+        self.queryStudentLocation(nil, options: ["limit": "200"]) { (error) -> Void in
+            
+            if(error == nil){
+                
+                step()
+                self.queryStudentLocation(nil, options: ["skip": "200", "limit": "200"], completion: { (error) -> Void in
+                    
+                    if(error == nil){
+                        
+                        step()
+                        
+                    }
+                        
+                    else{
+                        
+                        failure(error: error!)
+                        
+                    }
+                })
+                
+            }
+                
+            else{
+                
+                failure(error: error!)
+                
+            }
+            
+        }
+    }
 }

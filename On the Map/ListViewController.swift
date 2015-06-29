@@ -1,4 +1,3 @@
-//
 //  ListViewController.swift
 //  On the Map
 //
@@ -7,9 +6,6 @@
 //
 
 import UIKit
-
-
-
 
 class ListViewController: DataViewController, UITableViewDelegate, UITableViewDataSource, StatusViewDelegate {
     
@@ -30,46 +26,39 @@ class ListViewController: DataViewController, UITableViewDelegate, UITableViewDa
         listView.dataSource = self
 
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-
-    }
     
     func loadLocations(){
         
         var parseClient = ParseClient()
-        parseClient.GETStudentLocations { (error) -> Void in
-            
+        parseClient.batchLoadLocations({ () -> Void in
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
                 self.stopReloadIndicator(self.reloadLocationsButton)
-                
-                if(error != nil){
-                    self.addStatusView()
-                    self.errorMessageVC!.delegate = self
-                    self.displayErrorMessage(error!)
-                    self.updateButtonStatus()
-                    return
-                }
-                
                 self.listView.reloadData()
                 
             })
-        
-        }
+            
+        }, failure: { (error) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                
+                self.stopReloadIndicator(self.reloadLocationsButton)
+                
+                self.addStatusView()
+                self.errorMessageVC!.delegate = self
+                self.displayErrorMessage(error)
+                self.updateButtonStatus()
+                return
+            })
+        })
     }
-    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        println(self.cache.locations.count)
         return self.cache.locations.count
         
     }
-    
-    
+        
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
         
@@ -121,7 +110,5 @@ class ListViewController: DataViewController, UITableViewDelegate, UITableViewDa
         self.updateButtonStatus()
         
     }
-
-    
     
 }

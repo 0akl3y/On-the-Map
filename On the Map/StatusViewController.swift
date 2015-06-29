@@ -8,6 +8,7 @@
 // This View Controller provides the views for  error message handling and activity indication
 
 import UIKit
+import CoreLocation
 
 @objc protocol StatusViewDelegate {
     
@@ -63,10 +64,9 @@ class StatusViewController: UIViewController, ErrorDialogDelegate {
     
     override func viewDidDisappear(animated: Bool) {
         self.delegate?.didCloseErrorDialog?()
-    }
+    }    
     
-    
-    func showLoginErrorMessage(){
+    func showErrorMessage(){
         
         //Displays a custom error message for an login error.
         
@@ -80,16 +80,23 @@ class StatusViewController: UIViewController, ErrorDialogDelegate {
         self.dialogWindow?.center = self.view.center
         self.view.addSubview(self.dialogWindow!)
         
-        //Only add a retry button if it is a network connection related error
+        //Only add a retry button if it is a network connection related error or a retry does not make sense (e.g if it is a "invalid URL" error)
         
-        if(errorDomain != "UdacityClientLoginError"){
-            // Add a retry button if it is a connection error
+        var nonRetryDomains = ["UdacityClientLoginError", "kCLErrorDomain", "invalidURLError"]
+        
+        if(!contains(nonRetryDomains, errorDomain!)){
             
             self.dialogWindow!.addRetryButton()
         }
         
-        self.dialogWindow!.alpha = CGFloat(0)
+        else if (errorDomain == "kCLErrorDomain" && self.error!.code == 2){
+            // Error Code 2 is for network errors. A retry button makes sense
+            
+            self.dialogWindow!.addRetryButton()
         
+        }
+        
+        self.dialogWindow!.alpha = CGFloat(0)
         
         UIView.animateWithDuration(0.4, delay: 0, options: UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
             
@@ -107,7 +114,6 @@ class StatusViewController: UIViewController, ErrorDialogDelegate {
             
             self.dialogWindow!.alpha = 1.0
             }) { (completed) -> Void in
-                
                 
         }
         

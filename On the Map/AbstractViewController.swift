@@ -43,7 +43,7 @@ class AbstractViewController: UIViewController {
     func displayErrorMessage(error:NSError){
 
         self.errorMessageVC?.error = error
-        self.errorMessageVC?.showLoginErrorMessage()
+        self.errorMessageVC?.showErrorMessage()
     
     }
     
@@ -83,7 +83,6 @@ class AbstractViewController: UIViewController {
     func performLogout(){
         
         self.cache.session!.logoutOfUdacity { (success, error) -> Void in
-            println(success)
             
             if(error != nil){
                 
@@ -129,7 +128,5 @@ class AbstractViewController: UIViewController {
         return nil
         
     }
-
-    
 
 }

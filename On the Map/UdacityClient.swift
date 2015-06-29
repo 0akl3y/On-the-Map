@@ -26,10 +26,7 @@ class UdacityClient: SimpleNetworking {
     
     }
     
-    
     func logoutOfUdacity(completion:(success: Bool, error: NSError?) -> Void){
-        
-        
         
         //Check for exisiting cookie
         
@@ -62,8 +59,6 @@ class UdacityClient: SimpleNetworking {
             
             let newResult = result!.subdataWithRange(NSMakeRange(5, result!.length - 5))
             let parsedResult: AnyObject! = NSJSONSerialization.JSONObjectWithData(newResult, options: NSJSONReadingOptions.AllowFragments, error: nil)
-            
-            println(parsedResult)
             
             completion(success: true, error: nil)
             
@@ -127,7 +122,6 @@ class UdacityClient: SimpleNetworking {
     }
     
     func GETUserData(key:String, completion:(result: NSData?, error: NSError?) -> Void){
-        //We should not take self.userKey here, because we do not know, if it has been already retrieved in all contexts
         
         let getUserMethodString = "\(self.userInfoURL)" + "\(key)"
         self.sendGETRequest(getUserMethodString, GETData: nil, headerValues:nil ) { (result, error) -> Void in

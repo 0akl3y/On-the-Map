@@ -24,7 +24,6 @@ class DataViewController: AbstractViewController{
         self.navigationItem.rightBarButtonItems = [self.addLocationButton, self.reloadLocationsButton!]
         
     }
-
     
     func logout(sender:UIBarButtonItem){
         
@@ -49,9 +48,5 @@ class DataViewController: AbstractViewController{
             
         }
     }
-
-    
-
-
 
 }

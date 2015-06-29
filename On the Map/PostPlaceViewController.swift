@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class PostPlaceViewController: AbstractViewController, StatusViewDelegate {
+class PostPlaceViewController: AbstractViewController, StatusViewDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var placeNameInputField: UITextField!
@@ -21,6 +21,7 @@ class PostPlaceViewController: AbstractViewController, StatusViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.placeNameInputField.delegate = self
        
     }
 
@@ -56,5 +57,17 @@ class PostPlaceViewController: AbstractViewController, StatusViewDelegate {
     func didActivateRetryAction() {
         
         self.findPlace(self)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        textField.resignFirstResponder()
+        
     }
 }

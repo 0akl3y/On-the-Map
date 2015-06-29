@@ -21,11 +21,14 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMap
     
     @IBOutlet weak var mediaURL: UITextField!
     
+    
+    
     var previewURL: NSURL!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mapPreview.delegate = self
+        self.mediaURL.delegate = self
 
     }
     
@@ -35,12 +38,10 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMap
         
     }
     
-    
     override func viewDidAppear(animated: Bool) {
         
         self.mediaURL.delegate = self
     }
-    
     
     func mapFadeInLoopStart(){
         
@@ -48,32 +49,10 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMap
         
             self.mapPreview.alpha = 0.7
         
-            /*
-            UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 1.5) { () -> Void in
-                self.mapPreview.alpha = 0.8
-                
-            }
-            
-            UIView.addKeyframeWithRelativeStartTime(1.5, relativeDuration: 1.5) { () -> Void in
-                self.mapPreview.alpha = 0
-                
-            }
-            */
-                
-        
         }) { (completion) -> Void in
                 self.mapPreview.alpha = 1
-
-            
         }
-
-    
     }
-    
-    
-    
-
-    
     
     func mapFadeInLoopStop(){
         
@@ -82,7 +61,6 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMap
         }, completion: nil)
     
     }
-    
     
     func geocodePlacename(placeName: String){
         
@@ -94,7 +72,6 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMap
             self.mapFadeInLoopStop()
             
             if(error != nil){
-                
                 
                 self.mapActiviyIndicator.stopAnimating()
                 self.mapActiviyIndicator.alpha = 0
@@ -124,10 +101,8 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMap
         
         mapActiviyIndicator.startAnimating()
         self.mapFadeInLoopStart()
-
-        
+   
     }
-    
 
     func mapView(mapView: MKMapView!, didAddAnnotationViews views: [AnyObject]!) {
         
@@ -141,11 +116,6 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMap
 
         self.mapPreview.setCamera(zoomedCamera, animated: true)
     }
-    
-    
-
-    
-    
     
     func createStudentLocation(userLocation: CLLocation, mediaURL: String) -> StudentLocation{
         
@@ -182,30 +152,22 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMap
         })
     }
     
-    
     func textFieldDidBeginEditing(textField: UITextField) {
         
         self.browseButton.alpha = 1.0
 
     }
     
-    
-    
     @IBAction func browseLink(sender: UIButton) {
         //open the current link in browser
         
         if let URL = self.validateURLString(self.mediaURL.text){
             
-            
             self.previewURL = URL
-            
-            //UIApplication.sharedApplication().openURL(signupURL)
             self.performSegueWithIdentifier("URLPreview", sender: self)
-            
             
         }
     }
-    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
@@ -213,13 +175,9 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMap
             
             var targetVC = segue.destinationViewController as! URLPreviewController
             targetVC.previewURL = self.previewURL
-        
-        
+            
         }
     }
-    
-
-    
     
     func removeView(){
         
@@ -235,8 +193,6 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMap
         }
     }
     
-
-    
     func didActivateRetryAction() {
         
     }
@@ -245,6 +201,18 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMap
         
         self.removeView()
 
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        textField.resignFirstResponder()
+        
     }
 
 }

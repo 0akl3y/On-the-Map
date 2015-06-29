@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, StatusViewDelegate {
+class LoginViewController: UIViewController, StatusViewDelegate, UITextFieldDelegate {
     
     var activityIndicatorVC:StatusViewController?
     var session: UdacityClient?
@@ -28,6 +28,8 @@ class LoginViewController: UIViewController, StatusViewDelegate {
         super.viewDidLoad()
         
         passwordField.secureTextEntry = true
+        self.emailField.delegate = self
+        self.passwordField.delegate = self
 
         FBSDKProfile.enableUpdatesOnAccessTokenChange(true)
         
@@ -36,8 +38,8 @@ class LoginViewController: UIViewController, StatusViewDelegate {
             self.startActivityIndicator()
             
             if var accessToken = FBSDKAccessToken.currentAccessToken().tokenString{
-                let session = UdacityFacebookAuth(accessToken: accessToken)
-                session.POSTSessionRequest({ (success, error) -> Void in
+                self.session = UdacityFacebookAuth(accessToken: accessToken)
+                self.session!.POSTSessionRequest({ (success, error) -> Void in
                     
                     self.handleLoginResponse(success, error: error)
                 
@@ -61,14 +63,13 @@ class LoginViewController: UIViewController, StatusViewDelegate {
         self.activityIndicatorVC = StatusViewController()       
         self.addChildViewController(self.activityIndicatorVC!)
         self.view.addSubview(self.activityIndicatorVC!.view)
-        self.activityIndicatorVC!.didMoveToParentViewController(self)
+        self.activityIndicatorVC?.didMoveToParentViewController(self)
         
-        self.activityIndicatorVC!.delegate = self
+        self.activityIndicatorVC?.delegate = self
 
-        self.activityIndicatorVC!.startSpinner()
+        self.activityIndicatorVC?.startSpinner()
     
-    }
-        
+    }        
     
     func handleLoginResponse(success: Bool, error: NSError?){
         
@@ -78,7 +79,7 @@ class LoginViewController: UIViewController, StatusViewDelegate {
                 
                 self.activityIndicatorVC!.stopSpinner()
                 self.activityIndicatorVC!.removeStatusView()
-                let key = self.session!.userKey
+                let key = self.session?.userKey
                 let userData = UserModel(userKey: key!, session: self.session!)
                 self.cache.userData = userData
                 self.cache.session = self.session!
@@ -94,21 +95,17 @@ class LoginViewController: UIViewController, StatusViewDelegate {
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.activityIndicatorVC!.error = error
-                    self.activityIndicatorVC!.showLoginErrorMessage()
+                    self.activityIndicatorVC!.showErrorMessage()
                 })
-                
             }
-            
         }
-    
     }
-        
     
     @IBAction func proceedLogin(sender: UIButton) {
         
         //proceed the standard login to udacity
         
-        self.startActivityIndicator()        
+        self.startActivityIndicator()
         
         self.session = UdacityStandardLogin(username: self.emailField.text, password: self.passwordField.text)
         self.session!.POSTSessionRequest { (success, error) -> Void in
@@ -125,8 +122,7 @@ class LoginViewController: UIViewController, StatusViewDelegate {
     
     }
     
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        println("Customer logged out")
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {        
         FBSDKAccessToken.setCurrentAccessToken(nil)
     }    
 
@@ -170,4 +166,19 @@ class LoginViewController: UIViewController, StatusViewDelegate {
             
         }
     }
+    
+    /* Text input handling */
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        textField.resignFirstResponder()
+        
+    }
+    
 }

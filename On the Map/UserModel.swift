@@ -14,8 +14,6 @@ class UserModel {
     var firstName:String?
     var lastName:String?
     
-    
-    
     init(userKey:String, session:UdacityClient){
         
         self.uniqueKey = userKey
@@ -33,10 +31,6 @@ class UserModel {
                 var userDictionary = userJSONObject?.valueForKey("user") as! [String : AnyObject]
                 self.firstName = userDictionary["first_name"] as? String
                 self.lastName = userDictionary["last_name"] as? String
-            }
-        
-            else{
-                //handle error
             }
        })
     }

@@ -47,7 +47,6 @@ struct StudentLocation {
         
         self.mediaURL = placeAttributeDict[StudentLocationKey.mediaURLKey.rawValue] as? String
     
-    
     }
     
     func getAttrDictionary() -> [String: AnyObject]{
@@ -67,6 +66,5 @@ struct StudentLocation {
         }
         
         return attrDict as! [String : AnyObject]
-    }
-   
+    }   
 }

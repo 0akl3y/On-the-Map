@@ -26,11 +26,10 @@ class CollectionViewController: DataViewController, UICollectionViewDataSource, 
         // Dispose of any resources that can be recreated.
     }
     
-    func loadLocations(){
+    func loadLocations2(){
         
         var parseClient = ParseClient()
         parseClient.GETStudentLocations { (error) -> Void in
-            
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
@@ -50,6 +49,33 @@ class CollectionViewController: DataViewController, UICollectionViewDataSource, 
             })
             
         }
+    }
+    
+    func loadLocations(){
+        
+        var parseClient = ParseClient()
+        parseClient.batchLoadLocations({ () -> Void in
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                
+                self.stopReloadIndicator(self.reloadLocationsButton)
+                self.collectionView.reloadData()
+                self.collectionView.setNeedsDisplay()
+            })
+            
+            }, failure: { (error) -> Void in
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    
+                    self.stopReloadIndicator(self.reloadLocationsButton)
+                    
+                    self.addStatusView()
+                    self.errorMessageVC!.delegate = self
+                    self.displayErrorMessage(error)
+                    self.updateButtonStatus()
+                    return
+                    
+                })
+        })
     }
     
     override func reloadLocation(sender: UIBarButtonItem) {
