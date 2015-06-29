@@ -59,25 +59,52 @@ class ParseClient: SimpleNetworking {
         }
     }
     
-    func queryStudentLocation(queryArgs:[String: String], completion:(result: [[String: AnyObject]]?, error: NSError?) -> Void){
+    func queryStudentLocation(queryArgs:[String: String]?, options:[String: String]?, completion:(error: NSError?) -> Void){
 
         var argumentsList = [String]()
-        for (key, value) in queryArgs {
-            
-            var arg = "\"\(key)\":\"\(value)\""
-            argumentsList.append(arg)
         
+        var completeQuery = [String: String]()
+        
+        if (queryArgs != nil){
+            
+            for (key, value) in queryArgs! {
+                
+                var arg = "\"\(key)\":\"\(value)\""
+                argumentsList.append(arg)
+                
+            }
+            
+            let query = join(",", argumentsList)
+            
+            completeQuery["where"] = "{\(query)}"
+            
         }
         
-        let query = join(",", argumentsList)
-        var completeQuery = ["where": "{\(query)}"]
+        if(options != nil){
+            
+            for (key, value) in options! {
+                
+                completeQuery[key] = value                
+            }
+        }
         
         self.sendGETRequest(mainURL, GETData: completeQuery, headerValues: self.headerFields) { (result, error) -> Void in
             
-            let parsedResult: AnyObject! = NSJSONSerialization.JSONObjectWithData(result!, options: NSJSONReadingOptions.AllowFragments, error: nil)
-            let queryLocations = parsedResult.valueForKey("results") as? [[String: AnyObject]]
+            if(error == nil){
+                
+                let parsedResult: AnyObject! = NSJSONSerialization.JSONObjectWithData(result!, options: NSJSONReadingOptions.AllowFragments, error: nil)
+                let studentLocations = parsedResult.valueForKey("results") as? [[String: AnyObject]]
+                
+                for locationEntry in studentLocations! {
+                    
+                    let newLocations = StudentLocation(placeAttributeDict: locationEntry)
+                    //append the new locations to the cachedResponses singleton
+                    self.cache.locations.append(newLocations)
+                    
+                }
+            }
             
-            completion(result: queryLocations, error: error)
+            completion(error: error)
             
         }
     }

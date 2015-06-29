@@ -97,7 +97,7 @@ class MapViewController: DataViewController, MKMapViewDelegate, StatusViewDelega
         
         let parseClient = ParseClient()
         
-        parseClient.GETStudentLocations { (error) -> Void in
+        /*parseClient.GETStudentLocations { (error) -> Void in
             
             if(error == nil){
                 
@@ -123,6 +123,33 @@ class MapViewController: DataViewController, MKMapViewDelegate, StatusViewDelega
                 })
             }
             
+        }*/
+        
+        parseClient.queryStudentLocation(nil, options: ["limit": "200"]) { (error) -> Void in
+            
+            if(error == nil){
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    
+                    self.stopReloadIndicator(self.reloadLocationsButton!)
+                    
+                    self.generateMapAnnotationsForMapView(self.mapView, studentLocations: self.cache.locations)
+                    self.updateButtonStatus()
+                })
+                
+            }
+                
+            else{
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    
+                    self.stopReloadIndicator(self.reloadLocationsButton!)
+                    self.addStatusView()
+                    self.displayErrorMessage(error!)
+                    self.errorMessageVC!.delegate = self
+                    self.updateButtonStatus()
+                })
+            }
         }
         
     }

@@ -83,6 +83,7 @@ class StatusViewController: UIViewController, ErrorDialogDelegate {
         //Only add a retry button if it is a network connection related error
         
         if(errorDomain != "UdacityClientLoginError"){
+            // Add a retry button if it is a connection error
             
             self.dialogWindow!.addRetryButton()
         }
@@ -177,6 +178,4 @@ class StatusViewController: UIViewController, ErrorDialogDelegate {
         self.spinnerArea!.removeFromSuperview()
         
     }
-    
-    
 }

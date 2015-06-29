@@ -63,7 +63,10 @@ class ListViewController: DataViewController, UITableViewDelegate, UITableViewDa
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        println(self.cache.locations.count)
         return self.cache.locations.count
+        
     }
     
     
