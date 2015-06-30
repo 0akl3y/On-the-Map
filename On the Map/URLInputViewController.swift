@@ -139,17 +139,22 @@ class URLInputViewController: AbstractViewController,  StatusViewDelegate, MKMap
         
         let parseClient = ParseClient()
         
-        parseClient.POSTStudentLocations(newLocation, completion: { (result, error) -> Void in
-            
-            if(error != nil){
+        //first validate the media url
+        
+        if let URL = self.validateURLString(self.mediaURL.text){
+        
+            parseClient.POSTStudentLocations(newLocation, completion: { (result, error) -> Void in
                 
-                self.displayErrorMessage(error!)
-                return
-            }
-            
-            self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+                if(error != nil){
+                    
+                    self.displayErrorMessage(error!)
+                    return
+                }
+                
+                self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
 
-        })
+            })
+        }
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
