@@ -18,6 +18,9 @@
 		8F8ADB041B0BCFEB00B5063B /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8ADB011B0BCFEB00B5063B /* UdacityClient.swift */; };
 		8F8ADB051B0BCFEB00B5063B /* SimpleNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8ADB021B0BCFEB00B5063B /* SimpleNetworking.swift */; };
 		8F8ADB091B0BD15700B5063B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8ADB081B0BD15700B5063B /* MapViewController.swift */; };
+		8FBC08431B421350004D11DC /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FBC08401B421350004D11DC /* FBSDKCoreKit.framework */; };
+		8FBC08441B421350004D11DC /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FBC08411B421350004D11DC /* FBSDKLoginKit.framework */; };
+		8FBC08451B421350004D11DC /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FBC08421B421350004D11DC /* FBSDKShareKit.framework */; };
 		8FDD87CA1B36CB490050A449 /* URLInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDD87C91B36CB490050A449 /* URLInputViewController.swift */; };
 		8FDEEBD81B2951CF0065E72C /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDEEBD71B2951CF0065E72C /* ListViewController.swift */; };
 		8FE00DE71B29EECC000C25CB /* CachedResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE00DE61B29EECC000C25CB /* CachedResponses.swift */; };
@@ -30,9 +33,6 @@
 		8FEA9D051B24F4B300059913 /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEA9D041B24F4B300059913 /* StudentLocation.swift */; };
 		8FF199E61B0E65CC00C5032F /* UdacityFacebookAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF199E51B0E65CC00C5032F /* UdacityFacebookAuth.swift */; };
 		8FF199E81B0E66FC00C5032F /* UdacityStandardLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF199E71B0E66FC00C5032F /* UdacityStandardLogin.swift */; };
-		8FF199EA1B0E754000C5032F /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF199E91B0E754000C5032F /* FBSDKCoreKit.framework */; };
-		8FF199EC1B0E760F00C5032F /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF199EB1B0E760F00C5032F /* FBSDKLoginKit.framework */; };
-		8FF199EF1B0E79BF00C5032F /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF199EE1B0E79BF00C5032F /* FBSDKShareKit.framework */; };
 		8FF1A2391B328A490088F5F9 /* AbstractViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF1A2381B328A490088F5F9 /* AbstractViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,10 +58,14 @@
 		8F07976D1B0BCF440086BF5A /* On the MapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "On the MapTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0797721B0BCF440086BF5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F0797731B0BCF440086BF5A /* On_the_MapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = On_the_MapTests.swift; sourceTree = "<group>"; };
+		8F20DC971B42121200C3B07D /* On the Map.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "On the Map.xcodeproj"; sourceTree = "<group>"; };
 		8F37AA4D1B20DED900F249BD /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		8F8ADB011B0BCFEB00B5063B /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		8F8ADB021B0BCFEB00B5063B /* SimpleNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleNetworking.swift; sourceTree = "<group>"; };
 		8F8ADB081B0BD15700B5063B /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		8FBC08401B421350004D11DC /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		8FBC08411B421350004D11DC /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		8FBC08421B421350004D11DC /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		8FDD87C91B36CB490050A449 /* URLInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLInputViewController.swift; sourceTree = "<group>"; };
 		8FDEEBD71B2951CF0065E72C /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		8FE00DE61B29EECC000C25CB /* CachedResponses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedResponses.swift; sourceTree = "<group>"; };
@@ -74,10 +78,7 @@
 		8FEA9D041B24F4B300059913 /* StudentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
 		8FF199E51B0E65CC00C5032F /* UdacityFacebookAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityFacebookAuth.swift; sourceTree = "<group>"; };
 		8FF199E71B0E66FC00C5032F /* UdacityStandardLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityStandardLogin.swift; sourceTree = "<group>"; };
-		8FF199E91B0E754000C5032F /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		8FF199EB1B0E760F00C5032F /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		8FF199ED1B0E763A00C5032F /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
-		8FF199EE1B0E79BF00C5032F /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		8FF1A2381B328A490088F5F9 /* AbstractViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,9 +87,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8FF199EF1B0E79BF00C5032F /* FBSDKShareKit.framework in Frameworks */,
-				8FF199EC1B0E760F00C5032F /* FBSDKLoginKit.framework in Frameworks */,
-				8FF199EA1B0E754000C5032F /* FBSDKCoreKit.framework in Frameworks */,
+				8FBC08431B421350004D11DC /* FBSDKCoreKit.framework in Frameworks */,
+				8FBC08441B421350004D11DC /* FBSDKLoginKit.framework in Frameworks */,
+				8FBC08451B421350004D11DC /* FBSDKShareKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,9 +106,10 @@
 		8F07974F1B0BCF440086BF5A = {
 			isa = PBXGroup;
 			children = (
-				8FF199EE1B0E79BF00C5032F /* FBSDKShareKit.framework */,
-				8FF199EB1B0E760F00C5032F /* FBSDKLoginKit.framework */,
-				8FF199E91B0E754000C5032F /* FBSDKCoreKit.framework */,
+				8FBC08401B421350004D11DC /* FBSDKCoreKit.framework */,
+				8FBC08411B421350004D11DC /* FBSDKLoginKit.framework */,
+				8FBC08421B421350004D11DC /* FBSDKShareKit.framework */,
+				8F20DC971B42121200C3B07D /* On the Map.xcodeproj */,
 				8F07975A1B0BCF440086BF5A /* On the Map */,
 				8F0797701B0BCF440086BF5A /* On the MapTests */,
 				8F0797591B0BCF440086BF5A /* Products */,
@@ -172,6 +174,11 @@
 				8F0797721B0BCF440086BF5A /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8F20DC981B42121200C3B07D /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		8F8ADB071B0BD0B200B5063B /* Networking */ = {
@@ -263,6 +270,12 @@
 			mainGroup = 8F07974F1B0BCF440086BF5A;
 			productRefGroup = 8F0797591B0BCF440086BF5A /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 8F20DC981B42121200C3B07D /* Products */;
+					ProjectRef = 8F20DC971B42121200C3B07D /* On the Map.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8F0797571B0BCF440086BF5A /* On the Map */,
@@ -445,6 +458,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/johannes/Documents/FacebookSDK,
+					"$(PROJECT_DIR)/FacebookSDK",
 				);
 				INFOPLIST_FILE = "On the Map/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -460,6 +474,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/johannes/Documents/FacebookSDK,
+					"$(PROJECT_DIR)/FacebookSDK",
 				);
 				INFOPLIST_FILE = "On the Map/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
