@@ -130,7 +130,7 @@ class CollectionViewController: DataViewController, UICollectionViewDataSource, 
         
     }
     
-    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
 
         var mediaLink = self.cache.locations[indexPath.row].mediaURL
         if let link = self.validateURLString(mediaLink!){
